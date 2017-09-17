@@ -2,6 +2,7 @@
 .AppleDouble
 .LSOverride
 
+.vscode/
 node_modules/
 api/node_modules/
 client/node_modules/
