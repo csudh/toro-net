@@ -3,6 +3,8 @@
 .LSOverride
 
 node_modules/
+api/node_modules/
+client/node_modules/
 server/dist/
 client/dist/
 
