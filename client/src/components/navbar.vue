@@ -3,7 +3,7 @@
     <div class="container">
       <div class="nav-left">
         <p class="nav-item title is-3">
-          Portal Gestor
+          Toro Net
         </p>
       </div>
       <div class="nav-right">

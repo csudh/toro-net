@@ -47,7 +47,7 @@ const create = (itemParam) => {
 
   const newItem = new Items({
     name: itemParam.name,
-    solicitante: itemParam.solicitante,
+    applicant: itemParam.applicant,
     status: itemParam.status,
     created_at: new Date(),
     updated_at: new Date() });

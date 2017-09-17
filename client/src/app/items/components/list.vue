@@ -6,14 +6,14 @@
           <p class="control">
             <label class="checkbox">
               <input type="checkbox" name="checkbox">
-              Selecionar todos
+              Select all
             </label>
           </p>
         </div>
       </div>
       <div class="level-right">
         <div class="level-item">
-          <button class="button is-primary" @click="navigate('newitem.form')">Novo</button>
+          <button class="button is-primary" @click="navigate('newitem.form')">New</button>
         </div>
       </div>
     </nav>
@@ -23,16 +23,16 @@
         <tr>
           <th></th>
           <th>Item</th>
-          <th>Solicitante</th>
+          <th>Applicant</th>
           <th>Status</th>
-          <th>Ações</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in itemsList">
           <td><input type="checkbox"></td>
           <td>{{ item.name }}</td>
-          <td>{{ item.solicitante }}</td>
+          <td>{{ item.applicant }}</td>
           <td>{{ item.status }}</td>
           <td>
             <a class="button is-link" @click="edit(item._id)">Editar</a>
@@ -48,7 +48,7 @@
       </div>
       <div class="level-right">
         <div class="level-item">
-          <button class="button is-primary" @click="navigate('newitem.form')">Novo</button>
+          <button class="button is-primary" @click="navigate('newitem.form')">New</button>
         </div>
       </div>
     </nav>

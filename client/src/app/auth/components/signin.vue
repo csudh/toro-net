@@ -1,8 +1,8 @@
 <template>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Entrar</p>
-      <router-link class="button is-info" :to="{ name: 'auth.signup' }">Registrar</router-link>
+      <p class="modal-card-title">Login</p>
+      <router-link class="button is-info" :to="{ name: 'auth.signup' }">Register</router-link>
     </header>
     <section class="modal-card-body">
       <div class="content">
@@ -15,7 +15,7 @@
             </span>
           </p>
         </div>
-        <h3>Senha:</h3>
+        <h3>Password:</h3>
         <div class="field">
           <p class="control has-icon">
             <input class="input is-medium" type="password" placeholder="Password" v-model="password">
@@ -27,7 +27,7 @@
       </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success" @click="submit">Entrar</button>
+      <button class="button is-success" @click="submit">Login</button>
     </footer>
   </div>
 </template>
@@ -38,7 +38,7 @@
   import { setToken } from 'src/plugins/http';
 
   export default {
-    name: 'Entrar',
+    name: 'Login',
     data() {
       return {
         email: '',

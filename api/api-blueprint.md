@@ -191,7 +191,7 @@ Crete a new item.
 
      {
          "name": "item_name",
-         "solicitante": "user_name",
+         "applicant": "user_name",
          "status": "Pendente",
      }
 
@@ -214,7 +214,7 @@ List of all items
       {
         "_id": "58c04f7c05d029199b1530a4",
         "name": "Bolinha",
-        "solicitante": "Heelo world!",
+        "applicant": "Heelo world!",
         "status": "Pendente",
         "created_at": "2017-03-08T18:37:48.182Z",
         "updated_at": "2017-03-08T18:37:48.182Z",
@@ -223,7 +223,7 @@ List of all items
       {
         "_id": "58c04f7c05d029199b1530a5",
         "name": "Bolão",
-        "solicitante": "Hello world!",
+        "applicant": "Hello world!",
         "status": "Pendente",
         "created_at": "2017-03-08T18:37:48.194Z",
         "updated_at": "2017-03-08T18:37:48.194Z",
@@ -232,7 +232,7 @@ List of all items
       {
         "_id": "58c04f7c05d029199b1530a6",
         "name": "Quadrado",
-        "solicitante": "Cada um no seu!",
+        "applicant": "Cada um no seu!",
         "status": "Pendente",
         "created_at": "2017-03-08T18:37:48.195Z",
         "updated_at": "2017-03-08T18:37:48.195Z",
@@ -241,7 +241,7 @@ List of all items
       {
         "_id": "58c04fa6d8928d19acfc0d9e",
         "name": "Outra Cousa",
-        "solicitante": "Heelo world!",
+        "applicant": "Heelo world!",
         "status": "Andamento",
         "created_at": "2017-03-08T18:38:30.981Z",
         "updated_at": "2017-03-08T18:38:30.981Z",
@@ -250,7 +250,7 @@ List of all items
       {
         "_id": "58c9a61f6f27411644698831",
         "name": "item_name",
-        "solicitante": "Admin",
+        "applicant": "Admin",
         "status": "Pendente",
         "created_at": "2017-03-15T20:37:51.275Z",
         "updated_at": "2017-03-15T20:37:51.275Z",
@@ -259,7 +259,7 @@ List of all items
       {
         "_id": "58c9a63a6f27411644698832",
         "name": "another_item",
-        "solicitante": "you",
+        "applicant": "you",
         "status": "Confirmed",
         "created_at": "2017-03-15T20:38:18.598Z",
         "updated_at": "2017-03-15T20:38:18.598Z",
@@ -268,7 +268,7 @@ List of all items
       {
         "_id": "58c9a6576f27411644698833",
         "name": "some_item",
-        "solicitante": "another_user",
+        "applicant": "another_user",
         "status": "Pending",
         "created_at": "2017-03-15T20:38:47.652Z",
         "updated_at": "2017-03-15T20:38:47.652Z",
@@ -293,7 +293,7 @@ List of all items
 
      {
         "name": "another_name",
-        "solicitante": "another_user",
+        "applicant": "another_user",
         "status": "confirmed"
      }
 

@@ -5,20 +5,20 @@
         <nav class="level">
           <div class="level-item has-text-centered">
             <div>
-              <p class="heading">Usuários</p>
+              <p class="heading">Users</p>
               <p class="title">{{ users }}</p>
             </div>
           </div>
           <div class="level-item has-text-centered">
             <div>
-              <p class="heading">Itens</p>
+              <p class="heading">Items</p>
               <p class="title">{{ items }}</p>
             </div>
           </div>
           <div class="level-item has-text-centered">
             <div>
-              <p class="heading">Usuários Logados</p>
-              <p class="title">{{ loged }}</p>
+              <p class="heading">Active Users</p>
+              <p class="title">{{ active }}</p>
             </div>
           </div>
         </nav>
@@ -27,12 +27,12 @@
     </section>
     <section class="section">
       <div class="container">
-        <h1 class="title is-8">Ultimos itens criados</h1>
+        <h1 class="title is-8">Last items created</h1>
         <table class="table column is-8">
           <tbody>
             <tr v-for="item in recentItems">
               <td>{{ item.name }}</td>
-              <td>Criado a {{ item.seconds }} Segundos</td>
+              <td>Created {{ item.seconds }} seconds ago</td>
             </tr>
           </tbody>
         </table>
@@ -48,7 +48,7 @@
     data: () => ({
       users: 0,
       items: 0,
-      loged: 1,
+      active: 1,
       recentItems: [],
       dateNow: new Date(),
     }),
