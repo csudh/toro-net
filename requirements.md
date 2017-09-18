@@ -34,15 +34,9 @@ The class voted to make a section between the three frontend tools: (a) Angular,
 
 Technology | 1st | 2nd | 3rd
 --- | --- | --- | --- |
-Angular | 9 | 12 | 5 | 
-VueJS   | 14 | 8 | 6 |
-ReactJS | 5 | 6 | 15 |
-
-mtheeb only vote for VueJs
-
-juancleon only vote for VueJs
-
-End at JieliChen268
+Angular | 9 | 13 | 5 | 
+VueJS   | 15 | 8 | 6 |
+ReactJS | 5 | 6 | 16 |
 
 ## Conclusion
 
