@@ -171,6 +171,6 @@ This project is licensed under the Apache License - see the [LICENSE](LICENSE) f
 
 ## Acknowledgments
 
-* Hat tip to @fguisso whose [MEVN-Dockerized](https://github.com/fguisso/MEVN-Dockerized) boilerplate
+* Hat tip to @fguisso for his [MEVN-Dockerized](https://github.com/fguisso/MEVN-Dockerized) boilerplate
 * Inspiration
 * etc
