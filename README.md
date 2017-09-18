@@ -4,12 +4,12 @@ social networking bulletin board system
 
 ## Team Structure
 
-- Architecture Team @mattlevan
-- Backend @janani1989
-- Frontend @maefranco
-- Requirements @felixwhwang
-- Testing @juancleon
-- DeOps @john-csudh
+- Architecture Team [@mattlevan](https://github.com/mattlevan)
+- Backend [@janani1989](https://github.com/janani1989)
+- Frontend [@maefranco](https://github.com/maefranco)
+- Requirements [@felixwhwang](https://github.com/felixwhwang)
+- Testing [@juancleon](https://github.com/juancleon)
+- DeOps [@john-csudh](https://github.com/john-csudh)
 
 ## Getting Started
 
@@ -162,8 +162,8 @@ Add additional notes about how to deploy this on a live system.
 
 ## Contributing
 
-Please read `CONTRIBUTING.md` (to be written) for details on our code of conduct, and the process for submitting
-pull requests.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) (to be written) for details on our code of conduct, and
+the process for submitting pull requests.
 
 ## License
 
