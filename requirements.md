@@ -39,7 +39,9 @@ VueJS   | 14 | 8 | 6 |
 ReactJS | 5 | 6 | 15 |
 
 mtheeb only vote for VueJs
+
 juancleon only vote for VueJs
+
 End at JieliChen268
 
 ## Conclusion
