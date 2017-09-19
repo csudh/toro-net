@@ -14,5 +14,5 @@ sudo apt-get install -y nodejs
 sudo npm install -g gulp babel yarn
 
 # Install the required npm packages with yarn
-cd /home/$USER/toro-net/api && yarn
-cd /home/$USER/toro-net/client && yarn
+cd /home/ubuntu/toro-net/api && yarn
+cd /home/ubuntu/toro-net/client && yarn
