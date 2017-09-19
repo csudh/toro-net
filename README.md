@@ -20,7 +20,7 @@ on a live system.
 ### Prerequisites
 
 * Git
-* VirtualBox
+* VirtualBox with Guest Additions
 * Vagrant
 
 ### Installing
