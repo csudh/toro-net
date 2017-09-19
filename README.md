@@ -32,7 +32,8 @@ on a live system.
   * [Windows](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
   * [macOS](https://download.docker.com/mac/stable/Docker.dmg) 
   * [Ubuntu](https://store.docker.com/editions/community/docker-ce-server-ubuntu)
-* `docker-compose` (comes bundled with Docker)
+* `docker-compose` (comes bundled with Docker for Windows, but not for Linux)
+  * [Linux](https://docs.docker.com/compose/install/)
 * MongoDB
   * [Windows](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.9-signed.msi/download)
   * [Linux](https://docs.mongodb.com/manual/administration/install-on-linux/)
