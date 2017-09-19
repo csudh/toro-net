@@ -2,7 +2,7 @@
   "name": "haoc-front",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Fernando Guisso <fguisso@gmail.com>",
+  "author": "CSUDH CSC 583 Team",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

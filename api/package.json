@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "node, express api",
   "main": "server.js",
-  "author": "Fernando Guisso",
+  "author": "CSUDH CSC 583 Team",
   "license": "WTFPL",
   "scripts": {
     "start": "node dist/server"
