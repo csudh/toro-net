@@ -31,7 +31,7 @@ on a live system.
 * Docker
   * [Windows](https://www.docker.com/docker-windows)
   * [macOS](https://www.docker.com/docker-mac) 
-  * [Ubuntu](https://www.docker.com/docker-ubuntu))
+  * [Ubuntu](https://www.docker.com/docker-ubuntu)
 * `docker-compose` (comes bundled with Docker)
 * MongoDB
   * [Windows](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.9-signed.msi/download)
