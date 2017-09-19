@@ -20,7 +20,7 @@ on a live system.
 ### Prerequisites
 
 * Git
-* VirtualBox
+* VirtualBox with Guest Additions
 * Vagrant
 
 ### Installing
@@ -68,33 +68,29 @@ After you've acquired a local copy of the appropriate repository, open a termina
 should be a folder called `toro-net`) and run these commands in sequence. If you are on Windows, ignore the `sudo`s and
 just be sure to run these commands from an Administrator terminal instead.  
 
+Use Vagrant to boot an Ubuntu 16.04 LTS virtual machine and install the application dependencies automatically.
+```
+cd toro-net/
+```
+```
+vagrant up
+```
+
+This will take awhile as it needs to download an Ubuntu image (1.5 GB), and other dependencies (500 MB). After 
+Vagrant finishes, your host machine's `toro-net` folder will be synced with the `/home/ubuntu/toro-net` folder 
+inside of your Vagrant Ubuntu VM (also called a Vagrant box). Therefore, you can just edit the source code files 
+on your host machine.  
+
+We want to run the web application from within our Vagrant box, so you'll need to ssh into it from the `toro-net` directory.
+```
+vagrant ssh
+```
+
 #### Backend
-First, navigate your terminal to the correct folder.
+Now that we are inside of the Ubuntu VM, first navigate your terminal to the backend or API folder.
 ```
-cd api/
+cd toro-net/api/
 ```
-Next, install the dependencies the backend relies upon (this may take a few minutes).
-```
-sudo npm install
-```
-Start MongoDB with Linux. Make sure it's installed first!
-```
-sudo service mongod start
-```
-IF you get an error like `mongod: unrecognized service`...
-```
-sudo apt-get install mongodb -y
-```
-Then try again, this time starting the service `mongodb` (note the additional `b`).
-```
-sudo service mongodb start
-```
-OR start MongoDB with Windows. Open a new Administrator PowerShell to run these commands:
-```
-cd C:\Program Files\MongoDB\Server\3.4\bin
-.\mongod.exe
-```
-Leave that PowerShell open if you're on Windows.  
 
 Now you're ready to bootup the backend.
 ```
@@ -102,20 +98,21 @@ gulp
 ```
 
 #### Frontend
-In a new terminal, let's get the frontend up and running. Make sure you have already booted the backend.
+In a new terminal, let's get the frontend up and running. Navigate to your `toro-net` folder on your *host* machine 
+and then run another vagrant ssh.
 ```
-cd client/
+vagrant ssh
 ```
-Next, install the dependencies the frontend relies upon (this may also take a few minutes).
+Now `cd` to the frontend folder.
 ```
-sudo npm install
+cd toro-net/client/
 ```
-Now you're ready to bootup the backend.
+Now you're ready to bootup the frontend.
 ```
 yarn run dev
 ```
 
-After you've configured both the backend and frontend according to these instructions, navigate to `localhost:8080` 
+After you've configured both the backend and frontend according to these instructions, navigate to http://localhost:8080 
 in your browser to use the web application. Any changes you make to the code on your machine will be detected 
 automatically and updated within the application-- no need for restarting `gulp` or `yarn`!
 
