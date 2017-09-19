@@ -33,6 +33,9 @@ on a live system.
   * [macOS](https://www.docker.com/docker-mac) 
   * [Ubuntu](https://www.docker.com/docker-ubuntu))
 * `docker-compose` (comes bundled with Docker)
+* MongoDB
+  * [Windows](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.9-signed.msi/download)
+  * [Linux](https://docs.mongodb.com/manual/administration/install-on-linux/)
 
 ### Installing
 
@@ -88,6 +91,25 @@ Next, install the dependencies the backend relies upon (this may take a few minu
 ```
 sudo npm install
 ```
+Start MongoDB with Linux. Make sure it's installed first!
+```
+sudo service mongod start
+```
+IF you get an error like `mongod: unrecognized service`...
+```
+sudo apt-get install mongodb -y
+```
+Then try again, this time starting the service `mongodb` (note the additional `b`).
+```
+sudo service mongodb start
+```
+OR start MongoDB with Windows. Open a new Administrator PowerShell to run these commands:
+```
+cd C:\Program Files\MongoDB\Server\3.4\bin
+.\mongod.exe
+```
+Leave that PowerShell open if you're on Windows.  
+
 Now you're ready to bootup the backend.
 ```
 gulp
