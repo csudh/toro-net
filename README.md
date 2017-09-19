@@ -29,9 +29,9 @@ on a live system.
   * `babel`
   * `yarn`
 * Docker
-  * [Windows](https://www.docker.com/docker-windows)
-  * [macOS](https://www.docker.com/docker-mac) 
-  * [Ubuntu](https://www.docker.com/docker-ubuntu)
+  * [Windows](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
+  * [macOS](https://download.docker.com/mac/stable/Docker.dmg) 
+  * [Ubuntu](https://store.docker.com/editions/community/docker-ce-server-ubuntu)
 * `docker-compose` (comes bundled with Docker)
 * MongoDB
   * [Windows](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.9-signed.msi/download)
