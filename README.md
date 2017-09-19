@@ -81,13 +81,16 @@ Vagrant finishes, your host machine's `toro-net` folder will be synced with the 
 inside of your Vagrant Ubuntu VM (also called a Vagrant box). Therefore, you can just edit the source code files 
 on your host machine.  
 
+#### Backend
 We want to run the web application from within our Vagrant box, so you'll need to ssh into it from the `toro-net` directory.
 ```
 vagrant ssh
 ```
-
-#### Backend
-Now that we are inside of the Ubuntu VM, first navigate your terminal to the backend or API folder.
+Now that we are inside of the Ubuntu VM, let's start MongoDB.
+```
+sudo service mongod start
+```
+Now navigate your terminal to the backend or API folder.
 ```
 cd toro-net/api/
 ```
