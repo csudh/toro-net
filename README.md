@@ -56,7 +56,7 @@ After installing the prerequisite software, clone the repository from your team 
 
 Copy one of the above links and run this command in your terminal:
 ```
-git clone <link to team leader's repository>
+git clone https://github.com/<your team leader's GitHub username>/toro-net
 ```
 
 This will give you a local copy of your team leader's forked repository. You may commit and push code after your team 
@@ -65,8 +65,7 @@ leader has ensured you have those privileges.
 ### Running the app for local development
 
 After you've acquired a local copy of the appropriate repository, open a terminal in its root (it 
-should be a folder called `toro-net`) and run these commands in sequence. If you are on Windows, ignore the `sudo`s and
-just be sure to run these commands from an Administrator terminal instead.  
+should be a folder called `toro-net`) and run these commands in sequence.  
 
 Use Vagrant to boot an Ubuntu 16.04 LTS virtual machine and install the application dependencies automatically.
 ```
