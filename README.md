@@ -65,8 +65,7 @@ leader has ensured you have those privileges.
 ### Running the app for local development
 
 After you've acquired a local copy of the appropriate repository, open a terminal in its root (it 
-should be a folder called `toro-net`) and run these commands in sequence. If you are on Windows, ignore the `sudo`s and
-just be sure to run these commands from an Administrator terminal instead.  
+should be a folder called `toro-net`) and run these commands in sequence.  
 
 Use Vagrant to boot an Ubuntu 16.04 LTS virtual machine and install the application dependencies automatically.
 ```
