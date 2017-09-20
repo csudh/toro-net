@@ -95,9 +95,13 @@ Now navigate your terminal to the backend or API folder.
 cd toro-net/api/
 ```
 
-Now you're ready to bootup the backend.
+Now you're ready to run `gulp`, which will create `dist/server` directory.
 ```
 gulp
+```
+CTRL+C out of `gulp` and... Now we can run the backend.
+```
+yarn start
 ```
 
 #### Frontend
