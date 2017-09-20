@@ -56,7 +56,7 @@ After installing the prerequisite software, clone the repository from your team 
 
 Copy one of the above links and run this command in your terminal:
 ```
-git clone <link to team leader's repository>
+git clone https://github.com/<your team leader's GitHub username>/toro-net
 ```
 
 This will give you a local copy of your team leader's forked repository. You may commit and push code after your team 
