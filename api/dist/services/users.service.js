@@ -22,6 +22,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var service = {};
 
+console.log('Right before const secret!');
 var secret = process.env.SECRET;
 
 var auth = function auth(email, password) {
