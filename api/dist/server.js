@@ -16,8 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
-// const secret = process.env.SECRET;
-var secret = 'This is a fake secret.';
+var secret = process.env.SECRET;
 
 app.set('port', process.env.PORT || 3000);
 app.set('host', process.env.HOST || '0.0.0.0');

@@ -4,8 +4,8 @@ import expressJwt from 'express-jwt';
 
 const app = express();
 
-// const secret = process.env.SECRET;
-const secret = 'This is a fake secret.';
+const secret = process.env.SECRET;
+
 
 app.set('port', process.env.PORT || 3000);
 app.set('host', process.env.HOST || '0.0.0.0');
