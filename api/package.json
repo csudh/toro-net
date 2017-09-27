@@ -1,5 +1,5 @@
 {
-  "name": "api-mevn",
+  "name": "toro-net-api",
   "version": "1.0.0",
   "description": "node, express api",
   "main": "server.js",

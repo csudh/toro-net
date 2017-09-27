@@ -8,7 +8,7 @@ sudo apt-get install -y mongodb-org &&
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - &&
 sudo apt-get install -y nodejs &&
 # Install global npm packages
-sudo npm install -g gulp babel yarn &&
+sudo npm install -g gulp babel yarn nodemon &&
 # Install the required npm packages with yarn
 cd /home/ubuntu/toro-net/api && yarn &&
 cd /home/ubuntu/toro-net/client && yarn
