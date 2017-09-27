@@ -2,10 +2,10 @@ import Vue from 'vue';
 
 import App from './Root';
 import router from './router';
-import htttpPlugin from './plugins/http';
+import httpPlugin from './plugins/http';
 import store from './vuex/store';
 
-Vue.use(htttpPlugin);
+Vue.use(httpPlugin);
 
 /* eslint-disable no-new */
 new Vue({

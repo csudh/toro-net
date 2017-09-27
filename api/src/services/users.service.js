@@ -14,7 +14,7 @@ const auth = (email, password) => {
     Users.findOne({ email }, { created_at: 0, updated_at: 0 }, (err, user) => {
       bcrypt.compare(password, user.hash)
       .then((res) => {
-        if (user && res) {
+        if (user && res) { // success condition
           deferred.resolve({
             token: jwt.sign({ sub: user._id }, secret),
             name: user.name,

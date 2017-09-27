@@ -28,6 +28,9 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" @click="submit">Login</button>
+      <button class="button is-success" @click="submit">Login with GitHub</button>
+      <input type="checkbox" id="remember-me" v-model="checked">
+      <p>&nbspRemember me</p>
     </footer>
   </div>
 </template>
@@ -48,7 +51,7 @@
     methods: {
       ...mapActions(['setUser']),
       submit() {
-        const { email, password } = this;
+        const { email, password } = this; // match data from email/password forms
         this.http.post('/users/auth', { email, password })
           .then((res) => {
             /* eslint-disable prefer-const */

@@ -5,7 +5,7 @@
   "author": "CSUDH CSC 583 Team",
   "private": true,
   "scripts": {
-    "dev": "nodemon build/dev-server.js",
+    "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "nodemon": "^1.12.1",
     "vue": "^2.1.10",
     "vue-router": "^2.2.1",
     "vuex": "^2.2.1"
