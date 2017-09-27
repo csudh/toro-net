@@ -4,15 +4,20 @@
   "description": "A Vue.js project",
   "author": "CSUDH CSC 583 Team",
   "private": true,
+  "watch": {
+    "dev": "{config,server,static,test,src}/*.js"
+  },
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "npm-watch": "^0.2.0",
     "vue": "^2.1.10",
     "vue-router": "^2.2.1",
     "vuex": "^2.2.1"
