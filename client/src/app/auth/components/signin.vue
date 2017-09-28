@@ -29,7 +29,7 @@
     <footer class="modal-card-foot">
       <button class="button is-success" @click="submit">Login</button>
       <button class="button is-success" @click="submit">Login with GitHub</button>
-      <input type="checkbox" id="remember-me" v-model="checked">
+      <input type="checkbox" id="remember-me" v-model="remember">
       <p>&nbspRemember me</p>
     </footer>
   </div>
@@ -46,6 +46,7 @@
       return {
         email: '',
         password: '',
+        remember: '',
       };
     },
     methods: {
