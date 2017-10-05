@@ -4,36 +4,38 @@ const GitHubStrategy = require('passport-github').Strategy,
 
 module.exports = function (passport) {
   passport.serializeUser(function(user, done) {
+    console.log('Serializing user: ', user)
     done(null, user)
   })
 
   passport.deserializeUser(function(user, done) {
+    console.log('Deserializing user: ', user)
     done(null, user)
   })
 
+  /* GitHub authentication strategy using OAuth tokens. */
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_ID,
     clientSecret: process.env.GITHUB_SECRET,
     callbackURL: process.env.APP_URL+'auth/github/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile)
-      User.findOne({ 'id': profile.id }, function (err, user) {
+      User.findOne({ id: profile.id }, function (err, user) {
         if (err) {
           return done(err)
         }
 
         if (user) {
-          return done(null, user)
+          return done(null, profile)
         } else {
-          var newUser = new User()
+          const newUser = new User({
+            id: profile.id,
+            username: profile.username,
+            displayName: profile.displayName,
+            email: profile.emails[0].value
+          })
 
-          newUser.id = profile.id
-          newUser.username = profile.username
-          newUser.displayName = profile.displayName
-          newUser.email = profile.emails[0].value
-
-          newUser.save(function (err) {
+          User.create(newUser, function (err) {
             if (err) {
               throw err
             }
@@ -44,17 +46,21 @@ module.exports = function (passport) {
       })
     }))
 
+  /* Local authentication strategy using email/password. */
   passport.use(new LocalStrategy({
       usernameField: 'email'
     },
     (email, password, done) => {
       User.findOne({ email: email}, (err, user) => {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false); }
-        // if (!user.verifyPassword(password)) { return done(null, false); }
-        if (user.password != password) { return done(null, false); }
-        return done(null, user);
-      });
+        if (err) { 
+          return done(err)
+        }
+        if (!user || user.password != password) { 
+          return done(null, false)
+        }
+
+        return done(null, user)
+      })
     }
   ))
 }

@@ -6,6 +6,14 @@ router.get('/isauth', (req, res, next) => {
   res.send(req.user)
 })
 
+// router.get('/isauth', (req, res, next) => {
+//   require('connect-ensure-login').ensureLoggedIn(),
+//   function(req, res) {
+//     console.log('User from /isauth', req.user)
+//     res.send(req.user)
+//   }
+// })
+
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/');
@@ -13,6 +21,6 @@ router.get('/logout', (req, res, next) => {
 
 router.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../dist/index.html'))
-});
+})
 
 module.exports = router
