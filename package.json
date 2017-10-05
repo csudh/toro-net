@@ -1,6 +1,6 @@
 {
-  "name": "toro-net-test",
-  "description": "A Toro Net test with a new boilerplate",
+  "name": "toro-net",
+  "description": "Toro Net",
   "version": "0.0.1",
   "author": "CSUDH CSC 583 Team",
   "scripts": {

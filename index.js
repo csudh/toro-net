@@ -1,11 +1,20 @@
-'use strict';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import { mutations } from './mutations'
+import * as actions from './actions'
 
-/**
- * Adds commas to a number
- * @param {number} number
- * @param {string} locale
- * @return {string}
- */
-module.exports = function(number, locale) {
-    return number.toLocaleString(locale);
-};
+Vue.use(Vuex)
+
+const state = {
+  user: {},
+  counts: {
+    count: -1
+  },
+  posts: {}
+}
+
+export default new Vuex.Store({
+  state,
+  mutations,
+  actions
+})
