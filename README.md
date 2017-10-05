@@ -17,10 +17,10 @@ After that execute the following:
 
 ``` bash
 # fork the repo then clone it to your local machine
-git clone https://github.com/<your username>/toro-net-test.git
+git clone https://github.com/<your username>/toro-net.git
 
 # cd into the dir
-cd toro-net-test
+cd toro-net
 
 # provision the vagrant box
 vagrant up
@@ -29,7 +29,7 @@ vagrant up
 vagrant ssh
 
 # cd into the dir on your box
-cd toro-net-test
+cd toro-net
 
 # install dependencies (mongo, node, npm packages)
 ./dev-env.sh
@@ -41,8 +41,8 @@ npm run serve
 sudo service mongod start
 
 # open a new terminal on your host os
-cd toro-net-test
+cd toro-net
 vagrant ssh
-cd toro-net-test
+cd toro-net
 ./node_modules/nodemon/bin/nodemon.js server.js
 ```
