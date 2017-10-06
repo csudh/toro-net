@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <router-link to="/">Home</router-link>
+    <a href="/">Home</a>
     <a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a>
-    <a v-if="this.$store.state.user.displayName" href="/logout">Logout</a>
-    <router-link v-else to="/login">Login</router-link>
+    <a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a>
+    <a v-else href="/login">Login</a>
     <h1>{{ title }}</h1>
     <hr />
     <router-view />
