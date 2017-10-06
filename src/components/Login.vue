@@ -1,13 +1,15 @@
 <template>
   <div v-if="!this.$store.state.user.displayName">
     <div class="container">
-      <div class="form-group">
-        <input class="form-control" type="email" placeholder="Email" v-model="email">
-      </div>
-      <div class="form-group">
-        <input type="password" class="form-control" placeholder="Password" v-model="password">
-      </div>
-      <button class="btn btn-success" @click="login()">Login</button>
+      <form id="login" action="/auth/local" method="post">
+        <div class="form-group">
+          <input class="form-control" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button class="btn btn-success" form="login" type="submit">Login</button>
+      </form>
       <h4 class="mx-auto">OR<h4>
       <a href="/auth/github" class="btn btn-github">
         <i class="fa fa-github"></i> Login with Github
@@ -37,19 +39,8 @@
 export default {
   name: 'Login',
   data() {
-    return {
-      email: '',
-      password: ''
-    };
   },
   methods: {
-    login() {
-      const userCredentials = {
-        email: this.email,
-        password: this.password
-      }
-      this.$store.dispatch('login', userCredentials)
-    }
   },
   mounted() {
     this.$store.dispatch('getUser')

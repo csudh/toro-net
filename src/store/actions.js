@@ -45,19 +45,6 @@ export const register = ({commit}, userPayload) => {
   .then(json => commit(types.REGISTER, json))
 }
 
-export const login = ({commit}, loginPayload) => {
-  fetch(`/auth/local`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(loginPayload)
-  })
-  // .then(response => response.json())
-  // .then(json => commit(types.LOGIN, json))
-}
-
 export const logout = ({commit}) => {
   commit(types.LOGOUT)
 }

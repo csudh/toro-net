@@ -18,13 +18,13 @@ mongoose.connect(process.env.MONGO_URI);
 
 let app = express()
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 app.use(session({
-  secret: 'test-secret',
+  secret: 'toro-net',
   resave: false,
   saveUninitialized: false 
 }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.static(path.join(__dirname, './dist')))
