@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form @submit.prevent="validateBeforeSubmit">
+    <form @submit.prevent="validateBeforeSubmit" id="register">
       <div class="form-group" :class="{'has-error': errors.has('name') }" >
         <input v-model="displayName" name="name" v-validate="'required|alpha'" data-vv-delay="500" type="text" data-vv-as="Display Name" placeholder="Name" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('name')">{{ errors.first('name') }}</p>
@@ -21,7 +21,7 @@
         <input v-model="passwordConf" name="passwordconf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="Password Confirmation" placeholder="Confirm Password" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('passwordconf')">{{ errors.first('passwordconf') }}</p>
       </div>
-      <button class="btn btn-primary btn-block" type="submit">Submit</button>
+      <button class="btn btn-primary btn-block" form="register" type="submit">Submit</button>
     </form>
   </div>
 </template>
