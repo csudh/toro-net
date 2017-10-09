@@ -2,26 +2,26 @@
   <div class="container">
     <form @submit.prevent="validateBeforeSubmit" id="register">
       <div class="form-group" :class="{'has-error': errors.has('name') }" >
-        <input v-model="displayName" name="name" v-validate="'required|alpha'" data-vv-delay="500" type="text" data-vv-as="Display Name" placeholder="Name" class="form-control">
+        <input v-model="displayName" name="name" v-validate="'required|alpha_spaces'" data-vv-delay="500" type="text" data-vv-as="display name" placeholder="Name" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('name')">{{ errors.first('name') }}</p>
       </div>
       <div class="form-group" :class="{'has-error': errors.has('username') }" >
-        <input v-model="username" name="username" v-validate="'required|alpha_dash'" data-vv-delay="500" type="text" data-vv-as="Username" placeholder="Username" class="form-control">
+        <input v-model="username" name="username" v-validate="'required|alpha_dash'" data-vv-delay="500" type="text" data-vv-as="username" placeholder="Username" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('username')">{{ errors.first('username') }}</p>
       </div>
       <div class="form-group" :class="{'has-error': errors.has('email') }" >
-        <input v-model="email" name="email" v-validate="'required|email'" data-vv-delay="500" type="text" data-vv-as="Email Address" placeholder="Email" class="form-control">
+        <input v-model="email" name="email" v-validate="'required|email'" data-vv-delay="500" type="text" data-vv-as="email address" placeholder="Email" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('email')">{{ errors.first('email') }}</p>
       </div>
       <div class="form-group" :class="{'has-error': errors.has('password') }" >
-        <input v-model="password" name="password"v-validate="{ rules: { regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="Password" placeholder="Password" class="form-control">
+        <input v-model="password" name="password"v-validate="{ rules: { regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
       </div>
       <div class="form-group" :class="{'has-error': errors.has('passwordconf') }" >
-        <input v-model="passwordConf" name="passwordconf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="Password Confirmation" placeholder="Confirm Password" class="form-control">
+        <input v-model="passwordConf" name="passwordconf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
         <p class="text-danger" align="left" v-if="errors.has('passwordconf')">{{ errors.first('passwordconf') }}</p>
       </div>
-      <button class="btn btn-primary btn-block" form="register" type="submit">Submit</button>
+      <button class="btn btn-primary" form="register" type="submit">Submit</button>
     </form>
   </div>
 </template>
