@@ -8,23 +8,22 @@ var User = new Schema({
   },
   email: {
     type: String,
-    // required: true,
-    // unique: true,
+    required: true,
+    unique: true, // Sets email to the index key; NOT a validator!
     trim: true
   },
   username: {
     type: String,
-    // unique: true,
-    // required: true,
+    required: true,
     trim: true
   },
   password: {
     type: String,
-    // required: true
+    required: true
   },
   displayName: {
     type: String,
-    // required: true
+    required: true
   },
   createdOn: {
     type: Date,

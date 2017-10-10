@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div v-if="!this.$store.state.user.displayName">
-      <form @submit.prevent="validateBeforeSubmit" id="register">
+      <form @submit.prevent="validateBeforeSubmit" id="register" action="/users" method="post">
         <div class="form-group" :class="{'has-error': errors.has('name') }" >
-          <input v-model="displayName" name="name" v-validate="'required|alpha_spaces'" data-vv-delay="500" type="text" data-vv-as="display name" placeholder="Name" class="form-control">
-          <p class="text-danger" align="left" v-if="errors.has('name')">{{ errors.first('name') }}</p>
+          <input v-model="displayName" name="displayName" v-validate="'required|alpha_spaces'" data-vv-delay="500" type="text" data-vv-as="display name" placeholder="Name" class="form-control">
+          <p class="text-danger" align="left" v-if="errors.has('displayName')">{{ errors.first('displayName') }}</p>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('username') }" >
           <input v-model="username" name="username" v-validate="'required|alpha_dash'" data-vv-delay="500" type="text" data-vv-as="username" placeholder="Username" class="form-control">
@@ -19,8 +19,8 @@
           <p class="text-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('passwordconf') }" >
-          <input v-model="passwordConf" name="passwordconf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
-          <p class="text-danger" align="left" v-if="errors.has('passwordconf')">{{ errors.first('passwordconf') }}</p>
+          <input v-model="passwordConf" name="passwordConf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
+          <p class="text-danger" align="left" v-if="errors.has('passwordConf')">{{ errors.first('passwordConf') }}</p>
         </div>
         <button class="btn btn-primary" form="register" type="submit">Submit</button>
       </form>
@@ -36,27 +36,21 @@
 export default {
   name: 'Register',
   data() {
-    return {
-      displayName: '',
-      username: '', 
-      email: '',
-      password: '',
-      passwordConf: '',
-      formSubmitted: false,
-    }
   },
   methods: {
     validateBeforeSubmit(e) {
-      console.log("Verifying...");
-      e.preventDefault();
+      e.preventDefault()
       this.$validator.validateAll().then((result) => {
         if (result) {
           // eslint-disable-next-line
-          alert('Form submitted!');
-          return;
+          document.querySelector('#register').submit()
+          return
         } 
-      });
+      })
     }
+  },
+  mounted() {
+    this.$store.dispatch('getUser')
   }
 }
 </script>
