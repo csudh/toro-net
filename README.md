@@ -113,7 +113,8 @@ Provision your Vagrant box
 # start vagrant VM
 vagrant up
 ```
-Bypass the Windows 260 character limit by creating a symlink to write `npm modules` to our VM instead
+Bypass the Windows 260 character limit by creating a symlink to write 
+`npm modules` to our VM instead
     of to our shared Windows folder.
 ```bash
 # ssh into the vagrant session
@@ -123,5 +124,6 @@ vagrant ssh
 # ex. ln -s <path-to-shared-folder> <path-to-vm-home-directory-for-node-modules>
 ln -s /home/ubuntu/toro-net /home/ubuntu
 ```
-Continue with the [vagrant setup instructions](#getting-started-with-vagrant)
+Continue with the [vagrant setup instructions](#vagrant-setup-instructions)
+
 ---
