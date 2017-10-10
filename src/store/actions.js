@@ -32,19 +32,6 @@ export const incCount = ({commit}, countPayload) => {
   .then(json => commit(types.INC_COUNT, json))
 }
 
-export const register = ({commit}, userPayload) => {
-  fetch(`/users`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userPayload)
-  })
-  .then(response => response.json())
-  .then(json => commit(types.REGISTER, json))
-}
-
 export const logout = ({commit}) => {
   commit(types.LOGOUT)
 }

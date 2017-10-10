@@ -27,7 +27,7 @@ var User = new Schema({
   },
   createdOn: {
     type: Date,
-    // required: true
+    required: true
   }
 })
 

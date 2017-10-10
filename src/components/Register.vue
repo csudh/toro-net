@@ -15,7 +15,8 @@
           <p class="text-danger" align="left" v-if="errors.has('email')">{{ errors.first('email') }}</p>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('password') }" >
-          <input v-model="password" name="password"v-validate="{ rules: { regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
+          <!-- <input v-model="password" name="password"v-validate="{ rules: { regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control"> -->
+          <input v-model="password" name="password"v-validate="{ rules: { regex: /^(?=.*[A-Za-z])[A-Za-z\d]{1,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
           <p class="text-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('passwordconf') }" >
@@ -35,14 +36,14 @@
 
 export default {
   name: 'Register',
-  data() {
-  },
   methods: {
+    // vee-validate function to associate with the registration form.
     validateBeforeSubmit(e) {
       e.preventDefault()
       this.$validator.validateAll().then((result) => {
+        // Only runs if all fields were validated successfully.
         if (result) {
-          // eslint-disable-next-line
+          // Since all validations succeeded, submit the form to /users.
           document.querySelector('#register').submit()
           return
         } 

@@ -41,40 +41,29 @@ module.exports = (() => {
 
     /* User registration API endpoint */
     router.post('/', (req, res) => {
-      // Confirm passwords match.
-      if (req.body.password !== req.body.passwordConf) {
-        const err = new Error('Passwords do not match!')
-        err.status = 400
-        throw err
-      }
+      /* Vee-validate already takes care of frontend validation, including:
+       * - All fields are present
+       * - Password and password confirmation fields match
+       * - Email field has a valid email address format
+       * - Username contains only letters and numbers, no spaces or symbols
+       * - Display name contains only letters and numbers, no spaces or symbols
+       */
+      const newUser = new User({
+        displayName: req.body.displayName,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+        createdOn: new Date
+      })
 
-      // If passwords match and all fields are present...
-      if (req.body.displayName &&
-        req.body.email &&
-        req.body.username &&
-        req.body.password &&
-        req.body.passwordConf) {
-
-        const newUser = new User({
-          displayName: req.body.displayName,
-          email: req.body.email,
-          username: req.body.username,
-          password: req.body.password,
-        })
-
-        // Attempt to create the new user in the database.
-        User.create(newUser, (err) => {
-          if (err) {
-            throw err
-          }
-          res.json({ message: 'User registered successfully.' })
-        })
-      } else {
-        const err = new Error('All fields are required.')
-        err.status = 400
-        throw err
-      }
-    })
+      // Attempt to create the new user in the database.
+      User.create(newUser, (err) => {
+        if (err) {
+          throw err
+        }
+        res.json({ message: 'User registered successfully.' })
+      })
+  })
 
     return router;
 })();

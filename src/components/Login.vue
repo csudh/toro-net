@@ -40,8 +40,6 @@
 <script>
 export default {
   name: 'Login',
-  data() {
-  },
   methods: {
     validateBeforeSubmit(e) {
       e.preventDefault()
