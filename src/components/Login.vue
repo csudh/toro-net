@@ -1,16 +1,19 @@
 <template>
   <div class="container">
+    <form method="post" action="/auth/local">
     <div class="form-group">
-      <input class="form-control" type="email" placeholder="Email" v-model="email">
+      <input class="form-control" type="email" placeholder="Email" v-model="email" name="email">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
+      <input type="password" class="form-control" id="password" placeholder="Password" v-model="password" name="password">
     </div>
-    <button class="btn btn-success" @click="login">Login</button>
+      <button class="btn btn-success" type="submit">Login</button>
+    </form>
     <h4 class="mx-auto">OR<h4>
-    <a href="/auth/github" class="btn btn-github">
-      <i class="fa fa-github"></i> Login with Github
-    </a>
+    <form method="get" action='/auth/github'>
+    <button class="btn btn-success" type="submit"> Login with Github</button>
+      </form>
+  
   </div>
 </template>
 

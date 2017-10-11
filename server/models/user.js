@@ -3,30 +3,31 @@ const mongoose = require('mongoose'),
       bcrypt = require('bcryptjs')
 
 var User = new Schema({
+  displayName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
-    // required: true,
-    // unique: true,
+    required: true,
+    unique: true,
     trim: true
   },
   username: {
     type: String,
-    // unique: true,
-    // required: true,
+    unique: true,
+    required: true,
     trim: true
   },
   password: {
     type: String,
-    // required: true
-  },
-  displayName: {
-    type: String,
-    // required: true
+    required: true
   },
   createdOn: {
     type: Date,
-    // required: true
+    required: true
   }
+  
 })
 
 module.exports = mongoose.model('User', User)

@@ -21,6 +21,7 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
+    "passport-github2": "^0.1.11",
     "passport-local": "^1.0.0",
     "vue": "^2.2.1",
     "vue-router": "^2.4.0",

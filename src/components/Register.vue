@@ -1,21 +1,24 @@
 <template>
   <div class="container">
+   <form method="post" action='/users'>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Display name" v-model="displayName">
+   
+      <input type="text" class="form-control" placeholder="Display name" v-model="displayName" name="displayName">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Username" v-model="username">
+      <input type="text" class="form-control" placeholder="Username" v-model="username" name="username">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Email" v-model="email">
+      <input type="text" class="form-control" placeholder="Email" v-model="email" name="email">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" placeholder="Password" v-model="password">
+      <input type="password" class="form-control" placeholder="Password" v-model="password" name="password">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" placeholder="Confirm password" v-model="passwordConf">
+      <input type="password" class="form-control" placeholder="Confirm password" v-model="passwordConf" name="passwordConf">
     </div>
-    <button class="btn btn-success" @click="registerUser()">Register</button>
+    <button class="btn btn-success" type="submit">Register</button>
+    </form>
   </div>
 </template>
 

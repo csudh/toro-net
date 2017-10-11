@@ -9,6 +9,14 @@ const express = require('express'),
       index = require('./server/routes/index'),
       users = require('./server/routes/users')
 
+
+passport.serializeUser(function(user, done) {
+        done(null, user);
+       });
+       
+passport.deserializeUser(function(obj, done) {
+        done(null, obj);
+       });
 require('dotenv').load();
 require('./passport')(passport)
 
@@ -18,8 +26,8 @@ mongoose.connect(process.env.MONGO_URI);
 let app = express()
 
 app.use(express.static(path.join(__dirname, './dist')))
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   secret: 'test-secret',
   resave: false,
