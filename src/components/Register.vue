@@ -43,8 +43,18 @@ export default {
       this.$validator.validateAll().then((result) => {
         // Only runs if all fields were validated successfully.
         if (result) {
+          // Check for email uniqueness by querying MongoDB.
+          // Then, if email submitted is *not* unique, load the errors.email 
+          // in the store with the error so it is printed underneath the form 
+          // field.
+
           // Since all validations succeeded, submit the form to /users.
           document.querySelector('#register').submit()
+          // this.submit().then(() => {
+          //   // All went well.
+          // }).catch(res => {
+          //   // Errors occured.
+          // })
           return
         } 
       })
