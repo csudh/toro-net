@@ -10,13 +10,7 @@ const express = require('express'),
       users = require('./server/routes/users')
 
 
-passport.serializeUser(function(user, done) {
-        done(null, user);
-       });
-       
-passport.deserializeUser(function(obj, done) {
-        done(null, obj);
-       });
+
 require('dotenv').load();
 require('./passport')(passport)
 
