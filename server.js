@@ -1,6 +1,7 @@
 const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
+      cookieParser = require('cookie-parser'),
       mongoose = require('mongoose'),
       passport = require('passport'),
       session = require('express-session'),
@@ -25,8 +26,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   secret: 'test-secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {httpOnly: true,maxAge:2495000000}
 }))
+app.use(cookieParser('test-secret'))
 app.use(passport.initialize())
 app.use(passport.session())
 

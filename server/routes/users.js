@@ -49,8 +49,15 @@ module.exports = (() => {
         throw err
       }
 
-      // If passwords match and all fields are present...
-      
+      /* If user already exists...
+      User.find({email : req.body.email}, function(err, docs)  {
+        if(docs.length){
+          const err = new Error('User already exists!')
+          err.status = 400
+          throw err
+        }
+      }
+    )*/
 
         const newUser = new User({
           displayName: req.body.displayName,
@@ -59,6 +66,8 @@ module.exports = (() => {
           password: req.body.password,
           createdOn: new Date
         })
+
+
 
         // Attempt to create the new user in the database.
         User.create(newUser, (err) => {
