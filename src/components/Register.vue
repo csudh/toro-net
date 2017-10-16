@@ -43,18 +43,28 @@ export default {
       this.$validator.validateAll().then((result) => {
         // Only runs if all fields were validated successfully.
         if (result) {
-          // Check for email uniqueness by querying MongoDB.
-          // Then, if email submitted is *not* unique, load the errors.email 
-          // in the store with the error so it is printed underneath the form 
-          // field.
+          const newUser = {
+            displayName: this.displayName,
+            username: this.username,
+            email: this.email,
+            password: this.password
+          }
 
-          // Since all validations succeeded, submit the form to /users.
-          document.querySelector('#register').submit()
-          // this.submit().then(() => {
-          //   // All went well.
-          // }).catch(res => {
-          //   // Errors occured.
-          // })
+          this.$store.dispatch('registerUser', newUser)
+          .then(res => {
+            if (res.status == 409) {
+              this.errors.add('username', 'This username is already taken.', 'auth')
+              this.errors.first('username:auth')
+            }
+            else if (res.status == 200) {
+              alert('Registration successful!')
+              this.$router.push('/login')
+            }
+          }, err => {
+            alert('Registration failed!')
+            this.$router.push('/register')
+          })
+
           return
         } 
       })

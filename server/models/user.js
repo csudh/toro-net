@@ -8,13 +8,12 @@ var User = new Schema({
   },
   email: {
     type: String,
-    // required: true,
-    unique: true, // Sets email to the index key; NOT a validator!
     trim: true
   },
   username: {
     type: String,
-    // required: true,
+    required: true,
+    unique: true,
     trim: true
   },
   password: {
