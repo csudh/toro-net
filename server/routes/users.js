@@ -1,4 +1,4 @@
-const express = require('express'),
+  const express = require('express'),
       User = require('../models/user')
 
 module.exports = (() => {
@@ -57,14 +57,43 @@ module.exports = (() => {
           email: req.body.email,
           username: req.body.username,
           password: req.body.password,
+          question1: req.body.question1,
+          question2: req.body.question2,
+          question3: req.body.question3,
           createdOn: new Date
         })
+
+        // newUser.save(function(err, newUser) {
+				// 	if (err && err.code === 11000) {
+        //     let field;
+        //     // req.flash("error",{msg: req.t("emailchck")});
+        //   }})
+				// 		if(err.message.includes(".$")) {
+				// 			field = err.message.split(".$")[1];
+				// 		}
+				// 		else if (err.message.includes("index: ")) {
+				// 			field = err.message.split("index: ")[1];
+				// 		}
+				// 		else {
+				// 			req.flash("error", { msg: req.t("UserSaveError") });
+				// 			done(err, newUser);
+				// 			return
+				// 		}
+				// 		field = field.split(" dup key")[0];
+				// 		field = field.substring(0, field.lastIndexOf("_"));						
+				// 		if (field == "email")
+				// 			req.flash("error", { msg: req.t("EmailIsExists") });
+				// 		else 
+				// 			req.flash("error", { msg: req.t("UsernameIsExists") });
+				// 	}
+				// 	done(err, newUser);
+        // })
 
         // Attempt to create the new user in the database.
         User.create(newUser, (err) => {
           console.log(newUser)
           if (err) {
-            throw err
+              throw err
           }
           res.json({ message: 'User registered successfully.' })
         })
