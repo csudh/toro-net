@@ -43,21 +43,23 @@ module.exports = (() => {
     router.post('/', (req, res) => {
       // Confirm passwords match.
       
-      if (req.body.password !== req.body.passwordConf) {
+     /* if (req.body.password !== req.body.passwordConf) {
         const err = new Error('Passwords do not match!')
         err.status = 400
         throw err
-      }
+      }*/
 
-      /* If user already exists...
+      // If user already exists...
       User.find({email : req.body.email}, function(err, docs)  {
         if(docs.length){
           const err = new Error('User already exists!')
           err.status = 400
-          throw err
+          req.flash("error",{msg: req.t("User already exists!")});
+          done(err, docs);
+          return
         }
       }
-    )*/
+    )
 
         const newUser = new User({
           displayName: req.body.displayName,

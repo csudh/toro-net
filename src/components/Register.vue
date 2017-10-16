@@ -1,9 +1,9 @@
+import {Validator} from 'vee-validate'
 <template>
   <div class="container">
-   <form method="post" action='/users'>
+   <form id="register" @submit.prevent="Validate" method="post" action='/users'>
     <div class="form-group">
-   
-      <input type="text" class="form-control" placeholder="Display name" v-model="displayName" name="displayName">
+      <input type="text" class="form-control" placeholder="Display name" v-model="displayName" v-validate.initial="'required'" name="displayName">
     </div>
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Username" v-model="username" name="username">
@@ -22,11 +22,13 @@
       <input type="text" class="form-control" placeholder="Answer" v-model="question3" name="question3">
     </div>
 
-    <div class="form-group">
-      <input type="password" class="form-control" placeholder="Password" v-model="password" name="password">
+    <div class="form-group" :class="{'has-error': errors.has('password') }" >
+          <input v-model="password" name="password" v-validate.initial="{ rules: { regex: /^(?=.*[A-Za-z]+[0-9]+[!#@$*]+).{4,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
+          <p class="alert-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
     </div>
-    <div class="form-group">
-      <input type="password" class="form-control" placeholder="Confirm password" v-model="passwordConf" name="passwordConf">
+    <div class="form-group" :class="{'has-error': errors.has('passwordconf') }" >
+          <input v-model="passwordConf" name="passwordConf" v-validate.initial="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
+           <p class="alert-danger" align="left" v-if="errors.has('passwordConf')">{{ errors.first('passwordConf') }}</p>
     </div>
     <button class="btn btn-success" type="submit">Register</button>
     </form>
@@ -59,7 +61,23 @@ export default {
       passwordConf: '' 
     }
   },
+ 
   methods: {
+
+    Validate(e) {
+      
+      this.$validator
+        .validateAll()
+        .then(function(response) {
+          // Validation success if response === true
+          if(!this.errors.any())
+            this.formSubmitted = true
+        })
+        .catch(function(e) {
+          // Catch errors
+          console.log(e)
+        })
+    },
     registerUser() {
       const newUser = {
         displayName: this.displayName,
