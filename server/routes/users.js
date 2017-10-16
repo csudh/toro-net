@@ -109,6 +109,27 @@ module.exports = (() => {
         })
       
     })
+    router.post('/reset', function(req, res){
+      var password = req.body.password;
+      var password2 = req.body.password2;
+  
+      req.checkBody('password', 'Password is required').notEmpty();
+      req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+      
+      var errors = req.validationErrors();
+      
+          if(errors){
+              res.render('login',{
+                  errors:errors
+              });
+          } else {
+              
+      
+              req.flash('success_msg', 'Your password has been reset.');
+              res.redirect('/auth/local');
+              
+          }
+      });
 
     return router;
 })();

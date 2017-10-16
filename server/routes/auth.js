@@ -54,4 +54,70 @@ router.post('/local',
     res.redirect('/')
   })
 
+  router.post('/forgot', function(req, res){
+    var email = req.body.email;
+    var question = req.body.question;
+    var question2 = req.body.question2;
+    var question3 = req.body.question3;
+  
+    req.checkBody('email', 'Invalid email').notEmpty();
+    req.checkBody('question', 'Answer to security question is required').notEmpty();
+    req.checkBody('question2', 'Answer to security question is required').notEmpty();
+    req.checkBody('question3', 'Answer to security question is required').notEmpty();
+  
+      passport.use(new LocalStrategy(
+          function(email, question, question2, question3, done) {
+           User.getUserByemail(email, function(err, user){
+               if(err) throw err;
+               if(!user){
+                   return done(null, false, {message: 'invalid email'});
+               }
+        
+               User.comparequestion(question, user.question, function(err, isMatch){
+                   if(err) throw err;
+                   if(isMatch){
+                       return done(null, user);
+                   } else {
+                       return done(null, false, {message: 'Answer donot match'});
+                   }
+               });
+               User.comparequestion2(question2, user.question2, function(err, isMatch){
+                  if(err) throw err;
+                  if(isMatch){
+                      return done(null, user);
+                  } else {
+                      return done(null, false, {message: 'Answer donot match'});
+                  }
+              });
+              User.comparequestion3(question3, user.question3, function(err, isMatch){
+                  if(err) throw err;
+                  if(isMatch){
+                      return done(null, user);
+                  } else {
+                      return done(null, false, {message: 'Answer donot match'});
+                  }
+              });
+           });
+          }));
+          
+      var errors = req.validationErrors();
+      
+      if(errors){
+      res.render('login',{
+        errors:errors
+      });
+    } else {
+      
+      }
+      User.comparePassword(password, user.password, function(err, isMatch){
+          if(err) throw err;
+          if(isMatch){
+              return done(null, user);
+          } else {
+              return done(null, false, {message: 'Invalid password'});
+          }
+      });
+      res.redirect('/users/reset');
+  });
+
 module.exports = router
