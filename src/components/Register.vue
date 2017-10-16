@@ -2,7 +2,7 @@
   <div class="container">
     <div v-if="!this.$store.state.user.displayName">
       <form @submit.prevent="validateBeforeSubmit" id="register" action="/users" method="post">
-        <div class="form-group" :class="{'has-error': errors.has('name') }" >
+        <div class="form-group" :class="{'has-error': errors.has('displayName') }" >
           <input v-model="displayName" name="displayName" v-validate="'required|alpha_spaces'" data-vv-delay="500" type="text" data-vv-as="display name" placeholder="Name" class="form-control">
           <p class="text-danger" align="left" v-if="errors.has('displayName')">{{ errors.first('displayName') }}</p>
         </div>
@@ -19,7 +19,7 @@
           <input v-model="password" name="password"v-validate="{ rules: { regex: /^(?=.*[A-Za-z])[A-Za-z\d]{1,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
           <p class="text-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
         </div>
-        <div class="form-group" :class="{'has-error': errors.has('passwordconf') }" >
+        <div class="form-group" :class="{'has-error': errors.has('passwordConf') }" >
           <input v-model="passwordConf" name="passwordConf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
           <p class="text-danger" align="left" v-if="errors.has('passwordConf')">{{ errors.first('passwordConf') }}</p>
         </div>
