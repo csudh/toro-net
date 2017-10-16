@@ -1,6 +1,7 @@
-import {Validator} from 'vee-validate'
+
 <template>
   <div class="container">
+  <div v-if="!this.$store.state.user.displayName">
    <form id="register" @submit.prevent="Validate" method="post" action='/users'>
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Display name" v-model="displayName" v-validate.initial="'required'" name="displayName">
@@ -33,7 +34,11 @@ import {Validator} from 'vee-validate'
     <button class="btn btn-success" type="submit">Register</button>
     </form>
   </div>
-</template>
+  <div v-else>
+    <h3>You cannot register while you are logged in!</h3>
+  </div>
+  </div>
+  </template>
 
 <style scoped>
 .question {
@@ -65,18 +70,19 @@ export default {
   methods: {
 
     Validate(e) {
-      
-      this.$validator
-        .validateAll()
-        .then(function(response) {
-          // Validation success if response === true
-          if(!this.errors.any())
-            this.formSubmitted = true
-        })
-        .catch(function(e) {
-          // Catch errors
-          console.log(e)
-        })
+      e.preventDefault();
+      this.$validator.validateAll().then((result) => {
+        if (result){
+          document.querySelector("#register").submit();
+          return
+        }
+      })
+        
+         /* if(!this.errors.any()){
+            this.formSubmitted = true;
+            return
+          }*/
+        
     },
     registerUser() {
       const newUser = {
@@ -88,6 +94,9 @@ export default {
       }
       this.$store.dispatch('register', newUser)
     }
+  },
+  mounted(){
+    this.$store.dispatch(getUser);
   }
 }
 </script>

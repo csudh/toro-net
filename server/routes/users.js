@@ -49,7 +49,7 @@ module.exports = (() => {
         throw err
       }*/
 
-      // If user already exists...
+      /* If user already exists...
       User.find({email : req.body.email}, function(err, docs)  {
         if(docs.length){
           const err = new Error('User already exists!')
@@ -59,7 +59,7 @@ module.exports = (() => {
           return
         }
       }
-    )
+      );*/
 
         const newUser = new User({
           displayName: req.body.displayName,
@@ -97,6 +97,7 @@ module.exports = (() => {
 				// 	}
 				// 	done(err, newUser);
         // })
+        console.log(newUser);
 
         // Attempt to create the new user in the database.
         User.create(newUser, (err) => {
