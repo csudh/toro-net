@@ -9,8 +9,9 @@
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Username" v-model="username" name="username">
     </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Email" v-model="email" name="email">
+     <div class="form-group" >
+          <input v-model="email" name="email" v-validate="'required|email'" data-vv-delay="500" type="text" data-vv-as="email address" placeholder="Email" class="form-control">
+          <p class="text-danger" align="left" v-if="errors.has('email')">{{ errors.first('email') }}</p>
     </div>
 
     <div class="form-group"><div class="question">Question: When you were young, what did you want to be when you grew up?</div>

@@ -1,10 +1,14 @@
 const express = require('express'),
       router = express.Router(),
-      passport = require('passport')
-      GitHubStrategy = require('passport-github2').Strategy
+      passport = require('passport'),
+      expressValidator = require('express-validator'),
+      LocalStrategy = require('passport-local').Strategy,
+      GitHubStrategy = require('passport-github2').Strategy,
       User = require('../models/user')
-require('dotenv').load();
 
+
+router.use(expressValidator());
+require('dotenv').load();
 passport.use(new GitHubStrategy({
         clientID: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET,

@@ -11,6 +11,7 @@ import Home from './components/Home.vue'
 import Counter from './components/Counter.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
+import ForgotPassword from './components/ForgotPassword.vue'
 import { Validator } from 'vee-validate';
 const router = new VueRouter({
   mode: 'history',
@@ -18,7 +19,8 @@ const router = new VueRouter({
     { path: '/', component: Home },
     { path: '/counter', component: Counter },
     { path: '/login', component: Login },
-    { path: '/register', component: Register }
+    { path: '/register', component: Register },
+    { path: '/forgot_password', component: ForgotPassword}
   ]
 })
 

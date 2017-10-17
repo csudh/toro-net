@@ -12,7 +12,8 @@
     <h4 class="mx-auto">OR<h4>
     <form method="get" action='/auth/github'>
     <button class="btn btn-success" type="submit"> Login with Github</button>
-      </form>
+      </form><br>
+      <a href="/forgot_password">Forgot password?</a>
   
   </div>
 </template>

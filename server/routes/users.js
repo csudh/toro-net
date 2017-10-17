@@ -126,7 +126,7 @@ module.exports = (() => {
               
       
               req.flash('success_msg', 'Your password has been reset.');
-              res.redirect('/auth/local');
+              res.redirect('/login');
               
           }
       });
