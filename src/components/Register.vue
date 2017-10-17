@@ -1,13 +1,14 @@
-
 <template>
   <div class="container">
   <div v-if="!this.$store.state.user.displayName">
    <form id="register" @submit.prevent="Validate" method="post" action='/users'>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Display name" v-model="displayName" v-validate.initial="'required'" name="displayName">
+      <input type="text" class="form-control" v-validate="'required'" placeholder="Display name" v-model="displayName" name="displayName">
+       <p class="text-danger" align="left" v-if="errors.has('displayName')">{{ errors.first('displayName') }}</p>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Username" v-model="username" name="username">
+      <input type="text" class="form-control" v-validate="'required'" placeholder="Username" v-model="username" name="username">
+       <p class="text-danger" align="left" v-if="errors.has('username')">{{ errors.first('username') }}</p>
     </div>
      <div class="form-group" >
           <input v-model="email" name="email" v-validate="'required|email'" data-vv-delay="500" type="text" data-vv-as="email address" placeholder="Email" class="form-control">
@@ -15,13 +16,16 @@
     </div>
 
     <div class="form-group"><div class="question">Question: When you were young, what did you want to be when you grew up?</div>
-      <input type="text" class="form-control" placeholder="Answer" v-model="question1" name="question1">
+      <input type="text" class="form-control" v-validate="'required'" placeholder="Answer" v-model="question1" name="question1">
+       <p class="text-danger" align="left" v-if="errors.has('question1')">{{ errors.first('question1') }}</p>
     </div>
     <div class="form-group"><div class="question">Question: Who was your childhood hero?</div>
-      <input type="text" class="form-control" placeholder="Answer" v-model="question2" name="question2">
+      <input type="text" class="form-control" v-validate="'required'" placeholder="Answer" v-model="question2" name="question2">
+       <p class="text-danger" align="left" v-if="errors.has('question2')">{{ errors.first('question2') }}</p>
     </div>
     <div class="form-group"><div class="question">Question: What was the last name of your favorite teacher?</div>
-      <input type="text" class="form-control" placeholder="Answer" v-model="question3" name="question3">
+      <input type="text" class="form-control" v-validate="'required'" placeholder="Answer" v-model="question3" name="question3">
+       <p class="text-danger" align="left" v-if="errors.has('question3')">{{ errors.first('question3') }}</p>
     </div>
 
     <div class="form-group" :class="{'has-error': errors.has('password') }" >
@@ -34,6 +38,11 @@
     </div>
     <button class="btn btn-success" type="submit">Register</button>
     </form>
+    <li v-for="msg in messages">
+    <div> 
+    </div>
+    </li>
+  </div>
   </div>
   <div v-else>
     <h3>You cannot register while you are logged in!</h3>

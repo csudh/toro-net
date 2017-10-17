@@ -1,10 +1,13 @@
   const express = require('express'),
+        flash = require('req-flash'),
       User = require('../models/user')
+        
 
 module.exports = (() => {
     'use strict';
 
     const router = express.Router();
+    router.use(flash());
 
     /* Examples from count.js
     router.get('/', (req, res) => {
@@ -49,17 +52,19 @@ module.exports = (() => {
         throw err
       }*/
 
-      /* If user already exists...
+      // If user already exists...
       User.find({email : req.body.email}, function(err, docs)  {
+        
         if(docs.length){
           const err = new Error('User already exists!')
           err.status = 400
-          req.flash("error",{msg: req.t("User already exists!")});
-          done(err, docs);
-          return
+          req.flash("error","User already exists!")
+          res.json({ message: 'User already exists!' })
+          
+          //res.locals.messages=req.flash()
+          //res.render('register',{title: "Register"});
         }
-      }
-      );*/
+     else{
 
         const newUser = new User({
           displayName: req.body.displayName,
@@ -97,7 +102,8 @@ module.exports = (() => {
 				// 	}
 				// 	done(err, newUser);
         // })
-        console.log(newUser);
+        
+        console.log("newUser created");
 
         // Attempt to create the new user in the database.
         User.create(newUser, (err) => {
@@ -105,9 +111,13 @@ module.exports = (() => {
           if (err) {
               throw err
           }
+          req.flash('successMessage', 'User registered successfully.');
+          //res.locals.messages= req.flash();
+          //res.redirect('/login');
           res.json({ message: 'User registered successfully.' })
         })
-      
+      }
+    })
     })
     router.post('/reset', function(req, res){
       var password = req.body.password;
