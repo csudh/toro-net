@@ -31,7 +31,7 @@ module.exports = function (passport) {
           newUser.id = profile.id
           newUser.username = profile.username
           newUser.displayName = profile.displayName
-          newUser.email = profile.emails[0].value
+          newUser.email = profile.emails[0].value 
 
           newUser.save(function (err) {
             if (err) {

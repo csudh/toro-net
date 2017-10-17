@@ -1,6 +1,7 @@
 const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
+      cookieParser = require('cookie-parser'),
       mongoose = require('mongoose'),
       passport = require('passport'),
       session = require('express-session'),
@@ -8,6 +9,8 @@ const express = require('express'),
       auth = require('./server/routes/auth'),
       index = require('./server/routes/index'),
       users = require('./server/routes/users')
+
+
 
 require('dotenv').load();
 require('./passport')(passport)
@@ -18,13 +21,15 @@ mongoose.connect(process.env.MONGO_URI);
 let app = express()
 
 app.use(express.static(path.join(__dirname, './dist')))
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   secret: 'test-secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {httpOnly: true,maxAge:2495000000}
 }))
+app.use(cookieParser('test-secret'))
 app.use(passport.initialize())
 app.use(passport.session())
 
