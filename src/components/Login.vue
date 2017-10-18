@@ -9,7 +9,7 @@
     <button class="btn btn-success" @click="login">Login</button>
     <h4 class="mx-auto">OR<h4>
     <a href="/auth/github" class="btn btn-github">
-      <i class="fa fa-github"></i> Login with Github
+      <i class="fa fa-github"></i> Login with-Github
     </a>
   </div>
 </template>
