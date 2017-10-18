@@ -3,8 +3,8 @@ import axios from 'axios'
 
 export const getUser = ({commit}) => {
   axios.get('/isauth')
-  .then(function(response) {
-    commit(types.GET_USER, response.data)
+  .then(function(res) {
+    commit(types.GET_USER, res.data)
   })
   .catch(function (error) {
     console.log(error);
@@ -15,7 +15,7 @@ export const getCount = ({commit}) => {
   fetch(`/count`, {
     method: 'GET'
   })
-  .then(response => response.json())
+  .then(res => res.json())
   .then(json => commit(types.GET_COUNT, json))
 }
 
@@ -28,21 +28,28 @@ export const incCount = ({commit}, countPayload) => {
     },
     body: JSON.stringify({ count: ++countPayload })
   })
-  .then(response => response.json())
+  .then(res => res.json())
   .then(json => commit(types.INC_COUNT, json))
 }
 
-export const register = ({commit}, userPayload) => {
-  fetch(`/users`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userPayload)
+export const registerUser = ({commit}, userPayload) => {
+  return new Promise((resolve, reject) => {
+    fetch(`/users`, {
+      method: 'POST',
+      redirect: 'follow',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userPayload)
+    })
+    .then(res => {
+      resolve(res)
+    })
+    .then(err => {
+      reject(err)
+    })
   })
-  .then(response => response.json())
-  .then(json => commit(types.REGISTER, json))
 }
 
 export const logout = ({commit}) => {
@@ -60,15 +67,15 @@ export const addPost = ({commit}, postsPayload) => {
       title: title,
       body: body 
     })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(json => commit(types.ADD_POST, json))
   }
 }
 
 export const getPosts = ({commit}) => {
   axios.get('/posts')
-  .then(function (response) {
-    commit(types.GET_POSTS, response.data)
+  .then(function (res) {
+    commit(types.GET_POSTS, res.data)
   })
   .catch(function (error) {
     console.log(error);
