@@ -1,6 +1,9 @@
 const express = require('express'),
       router = express.Router(),
       passport = require('passport')
+      GitHubStrategy = require('passport-github').Strategy,
+      User = require('../models/user'),
+      LocalStrategy = require('passport-local').Strategy
 
 /* GitHub */
 /********  added scope**************************/
@@ -24,9 +27,10 @@ router.get('/github/callback',
 
 /* Email/password */
 router.post('/local',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/login', successRedirect: '/' }),
   function(req, res) {
-    res.redirect('/')
+    console.log("Success");
+    res.redirect('/');
   })
 
 
