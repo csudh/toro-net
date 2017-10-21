@@ -1,0 +1,11 @@
+**************************Instruction**********************************************
+1. Please use the following information to create the .env file(Replace the old .env content with the following one)
+2. The old credentials are expired
+***********************************************************************************
+
+
+PORT=3000
+MONGO_URI=mongodb://127.0.0.1:27017/toro-net
+GITHUB_ID=6a398c0d35e5e4f6b8aa
+GITHUB_SECRET=dbf383a8232401daba78c79d7a98b6a05a9965b6
+APP_URL=http://127.0.0.1:3000/
