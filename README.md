@@ -14,6 +14,11 @@ cd toro-net
 Create .env file. Add a `.env` file with your PORT, MONGO_URI, 
 [GITHUB_ID, GITHUB_SECRET and APP_URL](https://github.com/jaredhanson/passport-github) like this:
 
+***** For Frontend Team only *****
+
+*****Please refer to .env(gmofeng's github auth info); here is the link: https://github.com/gmofeng/toro-net/blob/master/.env(gmofeng's%20github%20auth%20info)*****
+
+
 ```
 PORT=3000
 MONGO_URI=mongodb://127.0.0.1:27017/toro-net
