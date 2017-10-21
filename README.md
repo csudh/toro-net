@@ -129,4 +129,4 @@ Continue with the [vagrant setup instructions](#vagrant-setup-instructions)
 ---
 
 # reference to milestone diagram 
-#2 eca98d0c4f988073222d70ba0956fc408f7544d6
+eca98d0c4f988073222d70ba0956fc408f7544d6
