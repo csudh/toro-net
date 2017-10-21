@@ -130,3 +130,4 @@ Continue with the [vagrant setup instructions](#vagrant-setup-instructions)
 
 # reference to milestone diagram 
 eca98d0c4f988073222d70ba0956fc408f7544d6
+csc583-midterm/images/milestone.png 
