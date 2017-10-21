@@ -11,6 +11,8 @@ module.exports = function (passport) {
     done(null, user)
   })
 
+
+/*not able to store github login info,checked database to confirm*/
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_ID,
     clientSecret: process.env.GITHUB_SECRET,
