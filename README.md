@@ -16,7 +16,7 @@ Create .env file. Add a `.env` file with your PORT, MONGO_URI,
 
 ***** For Frontend Team only *****
 
-*****Please refer to .env(gmofeng's github auth info); here is the link: https://github.com/gmofeng/toro-net/blob/master/.env(gmofeng's%20github%20auth%20info)*****
+*****Please refer to .env(gmofeng's github auth info); here is the link:  https://github.com/gmofeng/toro-net/blob/master/New_ENV(gmofeng's%20github%20auth%20info) *****
 
 
 ```
