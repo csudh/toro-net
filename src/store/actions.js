@@ -69,7 +69,7 @@ export const addPost = ({commit}, postsPayload) => {
     },
     body: JSON.stringify({
       title: title,
-      body: body 
+      body: body
     })
     .then(response => response.json())
     .then(json => commit(types.ADD_POST, json))
