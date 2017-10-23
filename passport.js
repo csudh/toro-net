@@ -17,7 +17,8 @@ module.exports = function (passport) {
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_ID,
     clientSecret: process.env.GITHUB_SECRET,
-    callbackURL: process.env.APP_URL+'auth/github/callback'
+    callbackURL: process.env.APP_URL+'auth/github/callback',
+    scope: ['user:email']
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({ id: profile.id }, function (err, user) {
