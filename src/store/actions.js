@@ -34,7 +34,7 @@ export const incCount = ({commit}, countPayload) => {
 
 export const registerUser = ({commit}, userPayload) => {
   return new Promise((resolve, reject) => {
-    fetch(`/users`, {
+    fetch(`/users/register`, {
       method: 'POST',
       redirect: 'follow',
       headers: {

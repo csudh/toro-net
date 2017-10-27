@@ -1,5 +1,6 @@
 const express = require('express'),
-      User = require('../models/user')
+      User = require('../models/user'),
+      bcrypt = require('bcryptjs')
 
 module.exports = (() => {
     'use strict';
@@ -7,7 +8,7 @@ module.exports = (() => {
     const router = express.Router();
 
     /* User registration API endpoint */
-    router.post('/', (req, res) => {
+    router.post('/register', (req, res) => {
       /* Vee-validate already takes care of frontend validation, including:
        * - All fields are present
        * - Password and password confirmation fields match
@@ -19,7 +20,7 @@ module.exports = (() => {
         displayName: req.body.displayName,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password,
+        password: bcrypt.hashSync(req.body.password, 10), // Hash, not plain!
         createdOn: new Date
       })
 
