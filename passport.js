@@ -5,12 +5,10 @@ const GitHubStrategy = require('passport-github').Strategy,
 
 module.exports = function (passport) {
   passport.serializeUser(function(user, done) {
-    console.log('Serializing user: ', user)
     done(null, user)
   })
 
   passport.deserializeUser(function(user, done) {
-    console.log('Deserializing user: ', user)
     done(null, user)
   })
 
@@ -34,7 +32,8 @@ module.exports = function (passport) {
             id: profile.id,
             username: profile.username,
             displayName: profile.displayName,
-            email: profile.emails[0].value
+            email: profile.emails[0].value,
+            createdOn: new Date
           })
 
           User.create(newUser, function (err) {

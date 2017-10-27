@@ -8,6 +8,8 @@ var User = new Schema({
   },
   email: {
     type: String,
+    required: true,
+    unique: true,
     trim: true
   },
   username: {
@@ -18,15 +20,14 @@ var User = new Schema({
   },
   password: {
     type: String
-    // required: true
   },
   displayName: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   createdOn: {
     type: Date,
-    // required: true
+    required: true
   }
 })
 

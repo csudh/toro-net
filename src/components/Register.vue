@@ -47,7 +47,8 @@ export default {
             displayName: this.displayName,
             username: this.username,
             email: this.email,
-            password: this.password
+            password: this.password,
+            createdOn: new Date
           }
 
           this.$store.dispatch('registerUser', newUser)
