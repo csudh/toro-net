@@ -4,7 +4,7 @@
       <form @submit.prevent="validateBeforeSubmit" id="register" action="/users" method="post">
         <div class="form-group" :class="{'has-error': errors.has('displayName') }" >
           <label for="displayName" class="pull-left">Display name</label>
-          <input v-model="displayName" name="displayName" id="displayName" v-validate="'required|alpha_spaces'" data-vv-delay="500" type="text" data-vv-as="display name" placeholder="Name" class="form-control">
+          <input v-model="displayName" name="displayName" id="displayName" v-validate="'required|alpha_spaces'" data-vv-delay="500" type="text" data-vv-as="display name" placeholder="Display name" class="form-control">
           <p class="text-danger" align="left" v-if="errors.has('displayName')">{{ errors.first('displayName') }}</p>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('username') }" >
