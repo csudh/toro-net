@@ -6,15 +6,15 @@ const express = require('express'),
 router.get('/github',
   passport.authenticate('github'))
 
-router.get('/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
+router.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }), 
   function(req, res) {
-    res.redirect('/')
+    res.redirect('/counter')
   })
 
 /* Email/password */
-router.post('/local',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+router.post('/local', 
+  passport.authenticate('local', { failureRedirect: '/login' }), 
   function(req, res) {
     res.redirect('/')
   })

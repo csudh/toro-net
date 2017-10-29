@@ -5,11 +5,13 @@ const GitHubStrategy = require('passport-github').Strategy,
 
 module.exports = function (passport) {
   passport.serializeUser(function(user, done) {
-    done(null, user)
+    done(null, user.id)
   })
 
-  passport.deserializeUser(function(user, done) {
-    done(null, user)
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function (err, user) {
+      done(err, user)
+    })
   })
 
   /* GitHub authentication strategy using OAuth tokens. */
@@ -20,16 +22,15 @@ module.exports = function (passport) {
     scope: ['user:email']
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({ id: profile.id }, function (err, user) {
+      User.findOne({ email: profile.emails[0].value }, function (err, user) {
         if (err) {
           return done(err)
         }
 
         if (user) {
-          return done(null, profile)
+          return done(null, user)
         } else {
           const newUser = new User({
-            id: profile.id,
             username: profile.username,
             displayName: profile.displayName,
             email: profile.emails[0].value,
@@ -41,7 +42,7 @@ module.exports = function (passport) {
               throw err
             }
 
-            return done(null, profile)
+            return done(null, user)
           })
         }
       })
