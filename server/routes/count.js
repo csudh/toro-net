@@ -2,9 +2,9 @@ const express = require('express'),
       Count = require('../models/count')
 
 module.exports = (() => {
-    'use strict';
+    'use strict'
 
-    const router = express.Router();
+    const router = express.Router()
 
     const countProjection = {
       __v: false,
@@ -50,4 +50,4 @@ module.exports = (() => {
     }
 
     return router;
-})();
+})()

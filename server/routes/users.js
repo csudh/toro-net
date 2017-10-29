@@ -3,9 +3,9 @@ const express = require('express'),
       bcrypt = require('bcryptjs')
 
 module.exports = (() => {
-    'use strict';
+    'use strict'
 
-    const router = express.Router();
+    const router = express.Router()
 
     /* User registration API endpoint */
     router.post('/register', (req, res) => {
@@ -38,4 +38,4 @@ module.exports = (() => {
   })
 
     return router;
-})();
+})()

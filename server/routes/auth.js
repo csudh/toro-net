@@ -16,7 +16,7 @@ router.get('/github/callback',
 router.post('/local', 
   passport.authenticate('local', { failureRedirect: '/login' }), 
   function(req, res) {
-    res.redirect('/')
+    res.redirect('/counter')
   })
 
 module.exports = router

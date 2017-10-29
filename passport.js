@@ -3,13 +3,13 @@ const GitHubStrategy = require('passport-github').Strategy,
       LocalStrategy = require('passport-local').Strategy,
       bcrypt = require('bcryptjs')
 
-module.exports = function (passport) {
+module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
     done(null, user.id)
   })
 
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
+    User.findById(id, function(err, user) {
       done(err, user)
     })
   })
@@ -22,7 +22,7 @@ module.exports = function (passport) {
     scope: ['user:email']
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({ email: profile.emails[0].value }, function (err, user) {
+      User.findOne({ email: profile.emails[0].value }, function(err, user) {
         if (err) {
           return done(err)
         }
@@ -37,7 +37,7 @@ module.exports = function (passport) {
             createdOn: new Date
           })
 
-          User.create(newUser, function (err) {
+          User.create(newUser, function(err) {
             if (err) {
               throw err
             }
@@ -53,7 +53,7 @@ module.exports = function (passport) {
       usernameField: 'email'
     },
     (email, password, done) => {
-      User.findOne({ email: email }, (err, user) => {
+      User.findOne({ email: email }, function(err, user) {
         if (err) { 
           return done(err)
         }
