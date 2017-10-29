@@ -8,7 +8,8 @@ const express = require('express'),
       count = require('./server/routes/count'),
       auth = require('./server/routes/auth'),
       index = require('./server/routes/index'),
-      users = require('./server/routes/users')
+      users = require('./server/routes/users'),
+      MongoStore = require('connect-mongo')(session)
 
 require('dotenv').load();
 require('./passport')(passport)
@@ -18,16 +19,17 @@ mongoose.connect(process.env.MONGO_URI);
 
 let app = express()
 
+app.use(express.static(path.join(__dirname, './dist')))
 app.use(session({
   secret: 'toro-net',
   resave: false,
-  saveUninitialized: false 
+  saveUninitialized: false,
+  store: new MongoStore({ url: process.env.MONGO_URI })
 }))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(express.static(path.join(__dirname, './dist')))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/auth', auth)
 app.use('/count', count)

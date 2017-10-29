@@ -3,9 +3,6 @@ const mongoose = require('mongoose'),
       bcrypt = require('bcryptjs')
 
 var User = new Schema({
-  id: {
-    type: String
-  },
   email: {
     type: String,
     required: true,
