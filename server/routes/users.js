@@ -28,7 +28,16 @@ module.exports = (() => {
       User.create(newUser, (err) => {
         if (err) {
           if (err.name === 'MongoError' && err.code === 11000) {
-            return res.status(409).send()
+            console.log(err.message)
+            //search error message body for error source = 'email' or 'username'
+            if (err.message.search('username') != '-1') {
+              res.statusMessage = 'username'
+              return res.status(409).send()
+            }
+            else if (err.message.search('email') != '-1') {
+              res.statusMessage = 'email'
+              return res.status(409).send()
+            }  
           }
           throw err
         }
