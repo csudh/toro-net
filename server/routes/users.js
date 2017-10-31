@@ -1,13 +1,14 @@
 const express = require('express'),
-      User = require('../models/user')
+      User = require('../models/user'),
+      bcrypt = require('bcryptjs')
 
 module.exports = (() => {
-    'use strict';
+    'use strict'
 
-    const router = express.Router();
+    const router = express.Router()
 
     /* User registration API endpoint */
-    router.post('/', (req, res) => {
+    router.post('/register', (req, res) => {
       /* Vee-validate already takes care of frontend validation, including:
        * - All fields are present
        * - Password and password confirmation fields match
@@ -19,7 +20,7 @@ module.exports = (() => {
         displayName: req.body.displayName,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password,
+        password: bcrypt.hashSync(req.body.password, 10), // Hash, not plain!
         createdOn: new Date
       })
 
@@ -27,7 +28,16 @@ module.exports = (() => {
       User.create(newUser, (err) => {
         if (err) {
           if (err.name === 'MongoError' && err.code === 11000) {
-            return res.status(409).send()
+            console.log(err.message)
+            //search error message body for error source = 'email' or 'username'
+            if (err.message.search('username') != '-1') {
+              res.statusMessage = 'username'
+              return res.status(409).send()
+            }
+            else if (err.message.search('email') != '-1') {
+              res.statusMessage = 'email'
+              return res.status(409).send()
+            }  
           }
           throw err
         }
@@ -37,4 +47,4 @@ module.exports = (() => {
   })
 
     return router;
-})();
+})()

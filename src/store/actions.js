@@ -6,35 +6,36 @@ export const getUser = ({commit}) => {
   .then(function(res) {
     commit(types.GET_USER, res.data)
   })
-  .catch(function (error) {
-    console.log(error);
+  .catch(function(err) {
+    console.log(err);
   })
 }
 
 export const getCount = ({commit}) => {
-  fetch(`/count`, {
-    method: 'GET'
+  axios.get('/count')
+  .then(function(res) {
+    commit(types.GET_COUNT, { count: res.data.count })
   })
-  .then(res => res.json())
-  .then(json => commit(types.GET_COUNT, json))
+  .catch(function(err) {
+    console.log(err)
+  })
 }
 
 export const incCount = ({commit}, countPayload) => {
-  fetch(`/count`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ count: ++countPayload })
+  axios.post('/count', {
+    count: ++countPayload
   })
-  .then(res => res.json())
-  .then(json => commit(types.INC_COUNT, json))
+  .then(function(res) {
+    commit(types.INC_COUNT, { count: res.data.count })
+  })
+  .catch(function(err) {
+    console.log(err)
+  })
 }
 
 export const registerUser = ({commit}, userPayload) => {
   return new Promise((resolve, reject) => {
-    fetch(`/users`, {
+    fetch(`/users/register`, {
       method: 'POST',
       redirect: 'follow',
       headers: {
@@ -74,10 +75,10 @@ export const addPost = ({commit}, postsPayload) => {
 
 export const getPosts = ({commit}) => {
   axios.get('/posts')
-  .then(function (res) {
+  .then(function(res) {
     commit(types.GET_POSTS, res.data)
   })
-  .catch(function (error) {
-    console.log(error);
+  .catch(function(err) {
+    console.log(err);
   });
 }

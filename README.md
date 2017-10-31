@@ -122,13 +122,11 @@ vagrant ssh
 
 # create the symlink 
 # ex. ln -s <path-to-shared-folder> <path-to-vm-home-directory-for-node-modules>
-ln -s /home/ubuntu/toro-net /home/ubuntu
+ln -s /home/ubuntu/toro-net /home/ubuntu/node_modules
 ```
 Continue with the [vagrant setup instructions](#vagrant-setup-instructions)
 
 ---
+# HW2 Milestone Diagram (Midterm)
+![HW2 Milestones](milestone.png)
 
-# reference to milestone diagram 
-eca98d0c4f988073222d70ba0956fc408f7544d6
-
-`csc583-midterm/images/milestone.png`
