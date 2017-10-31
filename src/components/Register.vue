@@ -58,9 +58,16 @@ export default {
 
           this.$store.dispatch('registerUser', newUser)
           .then(res => {
+            console.log(res)
             if (res.status == 409) {
-              this.errors.add('username', 'This username is already taken.', 'auth')
-              this.errors.first('username:auth')
+              if (res.statusText == 'username') {
+                this.errors.add('username', 'This username is already taken.', 'auth')
+                this.errors.first('username:auth')
+              } 
+              else if (res.statusText == 'email') {
+                this.errors.add('email', 'This email is already taken.', 'auth')
+                this.errors.first('username:email')
+              }
             }
             else if (res.status == 200) {
               alert('Registration successful!')
