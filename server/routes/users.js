@@ -19,13 +19,11 @@ module.exports = (() => {
       
       /* Hash User password first and then create User object to store in DB on 
        * hash success */
-      console.log("Inside /register...")
       bcrypt.hash(req.body.password, 10, function(err, hash) {
         if (err){
           res.status(409).send()
         }
         else{
-          console.log("Hash successful...")
           const newUser = new User({
             displayName: req.body.displayName,
             email: req.body.email,
@@ -37,7 +35,6 @@ module.exports = (() => {
           User.create(newUser, (err) => {
             if (err) {
               if (err.name === 'MongoError' && err.code === 11000) {
-                console.log(err.message)
                 //search error message body for error source = 'email' or 'username'
                 if (err.message.search('username') != '-1') {
                   res.statusMessage = 'username'
