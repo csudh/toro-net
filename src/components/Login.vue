@@ -31,15 +31,6 @@
 <!-- added button colors to match toro net and Github
 -->
 <style scoped>
-.btn-primary {
-  border: 0;
-  background: #860038;
-  color: white;
-}
-.btn-primary:hover {
-  background: #EFBA08;
-  color: white;
-}
 .btn-github {
   border: 0;
   background: #363636;

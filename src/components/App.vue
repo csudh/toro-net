@@ -1,15 +1,9 @@
 <template>
   <div id="app">
-    <!--<a href="/">Home</a>
-    <a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a>
-    <a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a>
-    <a v-else href="/login">Login</a>
-    -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -18,27 +12,13 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
             <li><a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a></li>
             <li><a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a></li>
-            <li><a href="/login">Login</a></li>
+            <li><a v-if="!this.$store.state.user.displayName" href="/login">Login</a></li>
           </ul>
-          <!-- <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input class="form-control" placeholder="Search" type="text">
-            </div> 
-            <button type="submit" class="btn btn-default">Submit</button>
-         
-          </form>
-         -->
-          <!-- <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-          </ul> -->
         </div>
       </div>
     </nav>
-  
-    <hr />
     <router-view />
   </div>
 </template>
@@ -82,6 +62,38 @@ ul {
 }
 
 a {
-  color: #42b983;
+  color: #363636;
+}
+.btn {
+  border: 0;
+  background: #860038;
+  color: white;
+  outline: 0;
+}
+.btn:active {
+  background: #860038;
+  outline: 0;
+}
+.btn:focus {
+  background: #860038;
+  outline: 0;
+}
+.btn:active:focus {
+  background: #860038;
+  outline: 0;
+}
+.btn-default {
+  border: 0;
+  background: #860038;
+  color: white;
+}
+.btn-primary {
+  border: 0;
+  background: #860038;
+  color: white;
+}
+.btn-primary:hover {
+  background: #EFBA08;
+  color: white;
 }
 </style>

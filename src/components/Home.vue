@@ -9,7 +9,7 @@
       <textarea class="form-control" id="body" rows="5" placeholder="Write your thoughts here..." v-model="body">
       </textarea>
     </div>
-    <button class="btn btn-primary" @click="addPost()">Post!</button>
+    <button class="btn btn-primary" @click="addPost()">Post</button>
     <hr>
   </div>
   <div class="container" v-else>
