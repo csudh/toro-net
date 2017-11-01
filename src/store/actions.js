@@ -3,57 +3,54 @@ import axios from 'axios'
 
 export const getUser = ({commit}) => {
   axios.get('/isauth')
-  .then(function (response) {
-    console.log('Retrieved user data: ', response.data);
-    commit(types.GET_USER, response.data)
+  .then(function(res) {
+    commit(types.GET_USER, res.data)
   })
-  .catch(function (error) {
-    console.log(error);
-  });
+  .catch(function(err) {
+    console.log(err);
+  })
 }
 
 export const getCount = ({commit}) => {
-  fetch(`/count`, {
-    method: 'GET'
+  axios.get('/count')
+  .then(function(res) {
+    commit(types.GET_COUNT, { count: res.data.count })
   })
-  .then(response => response.json())
-  .then(json => commit(types.GET_COUNT, json))
+  .catch(function(err) {
+    console.log(err)
+  })
 }
 
 export const incCount = ({commit}, countPayload) => {
-  fetch(`/count`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ count: ++countPayload })
+  axios.post('/count', {
+    count: ++countPayload
   })
-  .then(response => response.json())
-  .then(json => commit(types.INC_COUNT, json))
+  .then(function(res) {
+    commit(types.INC_COUNT, { count: res.data.count })
+  })
+  .catch(function(err) {
+    console.log(err)
+  })
 }
 
-export const register = ({commit}, userPayload) => {
-  fetch(`/users`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userPayload)
+export const registerUser = ({commit}, userPayload) => {
+  return new Promise((resolve, reject) => {
+    fetch(`/users/register`, {
+      method: 'POST',
+      redirect: 'follow',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userPayload)
+    })
+    .then(res => {
+      resolve(res)
+    })
+    .then(err => {
+      reject(err)
+    })
   })
-  .then(response => response.json())
-  .then(json => commit(types.REGISTER, json))
-}
-
-export const login = ({commit}) => {
-  axios.get('/isauth')
-  .then(function (response) {
-    commit(types.LOGIN, response.data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
 }
 
 export const logout = ({commit}) => {
@@ -71,18 +68,17 @@ export const addPost = ({commit}, postsPayload) => {
       title: title,
       body: body 
     })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(json => commit(types.ADD_POST, json))
   }
 }
 
 export const getPosts = ({commit}) => {
   axios.get('/posts')
-  .then(function (response) {
-    console.log('Retrieved posts: ', response.data);
-    commit(types.GET_POSTS, response.data)
+  .then(function(res) {
+    commit(types.GET_POSTS, res.data)
   })
-  .catch(function (error) {
-    console.log(error);
+  .catch(function(err) {
+    console.log(err);
   });
 }
