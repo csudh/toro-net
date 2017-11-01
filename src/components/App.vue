@@ -12,16 +12,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">Toro Net</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
             <li><a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a></li>
             <li><a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a></li>
-            <li><a href="/login">Login</a></li>
+            <li><a v-if="!this.$store.state.user.displayName" href="/login">Login</a></li>
           </ul>
           <!-- <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -82,6 +80,38 @@ ul {
 }
 
 a {
-  color: #42b983;
+  color: #363636;
+}
+.btn {
+  border: 0;
+  background: #860038;
+  color: white;
+  outline: 0;
+}
+.btn:active {
+  background: #860038;
+  outline: 0;
+}
+.btn:focus {
+  background: #860038;
+  outline: 0;
+}
+.btn:active:focus {
+  background: #860038;
+  outline: 0;
+}
+.btn-default {
+  border: 0;
+  background: #860038;
+  color: white;
+}
+.btn-primary {
+  border: 0;
+  background: #860038;
+  color: white;
+}
+.btn-primary:hover {
+  background: #EFBA08;
+  color: white;
 }
 </style>

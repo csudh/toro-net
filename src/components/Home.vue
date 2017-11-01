@@ -14,8 +14,8 @@
   </div>
   <div class="container" v-else>
     <h4>Login to access Toro Net</h4>
-    <img src="https://lh6.googleusercontent.com/boHpliCk16WKnL--c78vBJgbQaElZMDYWgMB1AgLJGVbzS7_ZfRL6JQOIVobyjLBWSARv6MeSFMl94s=w1218-h955" alt="ToroNet logo">
-    <!--<img src="src/components/assets/ToroNet.png" >-->
+    <!-- <img src="https://lh6.googleusercontent.com/boHpliCk16WKnL--c78vBJgbQaElZMDYWgMB1AgLJGVbzS7_ZfRL6JQOIVobyjLBWSARv6MeSFMl94s=w1218-h955" alt="ToroNet logo"> -->
+    <!-- <img src="src/components/assets/ToroNet.png" > -->
   </div>
 </template>
 
