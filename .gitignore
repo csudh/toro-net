@@ -1,9 +1,11 @@
-.DS_Store
 node_modules/
-.vagrant/
-dist/build.js
+var/
 dist/build.js.map
+dist/build.js
+.vagrant/
 npm-debug.log
 yarn-error.log
 .env
 ubuntu-xenial-16.04-cloudimg-console.log
+*.log
+.DS_Store
