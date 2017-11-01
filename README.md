@@ -127,6 +127,6 @@ ln -s /home/ubuntu/toro-net /home/ubuntu/node_modules
 Continue with the [vagrant setup instructions](#vagrant-setup-instructions)
 
 ---
-
 # HW2 Milestone Diagram (Midterm)
 ![HW2 Milestones](milestone.png)
+

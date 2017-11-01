@@ -27,14 +27,26 @@
   </div>
 </template>
 
+
+<!-- added button colors to match toro net and Github
+-->
 <style scoped>
+.btn-primary {
+  border: 0;
+  background: #610B21;
+  color: white;
+}
+.btn-primary:hover {
+  background: #DBA901;
+  color: white;
+}
 .btn-github {
   border: 0;
-  background: #444;
+  background: #2dba4e;;
   color: white;
 }
 .btn-github:hover {
-  background: #2B2B2B;
+  background: #298A08;
   color: white;
 }
 </style>
