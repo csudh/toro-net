@@ -14,7 +14,7 @@
   </div>
   <div class="container" v-else>
     <h4>Login to access Toro Net</h4>
-    <img src="https://imgur.com/a/Yee3F" alt="ToroNet logo">
+    <img src="https://i.imgur.com/ytdAxfF.png" alt="ToroNet logo">
     <!--<img src="src/components/assets/ToroNet.png" >-->
   </div>
 </template>
