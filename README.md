@@ -46,17 +46,14 @@ Run mongo as a service.
 $ ./bin/init-db.sh
 ```
 
-Build and watch for changes.
+Run the toro-net services.
 
 ```bash
-$ npm run serve
+$ ./bin/run-back-end.sh &
+$ ./bin/run-front-end.sh &
 ```
 
-Run the backend using `nodemon.js`.
-
-```bash
-$ ./node_modules/nodemon/bin/nodemon.js server.js
-```
+Log files will be created in `var/log/*.log`.  
 
 ## View Application
 
