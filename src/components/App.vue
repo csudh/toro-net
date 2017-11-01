@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    <!--<a href="/">Home</a>
-    <a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a>
-    <a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a>
-    <a v-else href="/login">Login</a>
-    -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -21,22 +16,9 @@
             <li><a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a></li>
             <li><a v-if="!this.$store.state.user.displayName" href="/login">Login</a></li>
           </ul>
-          <!-- <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input class="form-control" placeholder="Search" type="text">
-            </div> 
-            <button type="submit" class="btn btn-default">Submit</button>
-         
-          </form>
-         -->
-          <!-- <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-          </ul> -->
         </div>
       </div>
     </nav>
-  
-    <hr />
     <router-view />
   </div>
 </template>

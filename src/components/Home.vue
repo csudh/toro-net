@@ -9,11 +9,11 @@
       <textarea class="form-control" id="body" rows="5" placeholder="Write your thoughts here..." v-model="body">
       </textarea>
     </div>
-    <button class="btn btn-primary" @click="addPost()">Post!</button>
+    <button class="btn btn-primary" @click="addPost()">Post</button>
     <hr>
   </div>
   <div class="container" v-else>
-    <h4>Login to access Toro Net</h4>
+    <h4>Login to access Toro Net!</h4>
     <!-- <img src="https://lh6.googleusercontent.com/boHpliCk16WKnL--c78vBJgbQaElZMDYWgMB1AgLJGVbzS7_ZfRL6JQOIVobyjLBWSARv6MeSFMl94s=w1218-h955" alt="ToroNet logo"> -->
     <!-- <img src="src/components/assets/ToroNet.png" > -->
   </div>
