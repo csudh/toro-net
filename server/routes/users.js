@@ -20,10 +20,10 @@ module.exports = (() => {
       /* Hash User password first and then create User object to store in DB on 
        * hash success */
       bcrypt.hash(req.body.password, 10, function(err, hash) {
-        if (err){
+        if (err) {
           res.status(409).send()
         }
-        else{
+        else {
           const newUser = new User({
             displayName: req.body.displayName,
             email: req.body.email,
@@ -55,7 +55,7 @@ module.exports = (() => {
             res.status(200).send()
           })
         }
-      });
+      })
   })
 
     return router;

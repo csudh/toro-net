@@ -62,13 +62,13 @@ module.exports = function(passport) {
         }
 
         bcrypt.compare(password, user.password, function(err, res) {
-          if (err){
+          if (err) {
             return done(null, false)
           }
-          else{
+          else {
             return done(null, user)
           }
-        });
+        })
       })
     }
   ))
