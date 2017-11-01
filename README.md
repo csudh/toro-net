@@ -65,12 +65,3 @@ Run the backend using nodemon
 ```bash
 $ ./node_modules/nodemon/bin/nodemon.js server.js
 ```
-
-<<<<<<< HEAD
-Open http://localhost:3000 in any web browser.
-=======
----
-# HW2 Milestone Diagram (Midterm)
-![HW2 Milestones](milestone.png)
-
->>>>>>> 7418a0dcee6288cc8ce48aeeeb26b83f28cf6f19
