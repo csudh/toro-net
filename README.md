@@ -33,6 +33,14 @@ $ bash dev-env.sh
 
 Install node packages with npm.
 
+Open a new terminal window and navigate to toro-net. Run mongo as a service.  
+
+```bash
+$ ./bin/init-db.sh
+```
+
+
+
 ```bash
 $ npm install
 ``` 
@@ -41,13 +49,6 @@ Build and watch for changes.
 
 ```bash
 $ npm run serve
-```
-
-Open a new terminal window and navigate to toro-net.
-Run mongo as a service.  
-
-```bash
-$ sudo service mongod start
 ```
 
 Run the backend using nodemon  
