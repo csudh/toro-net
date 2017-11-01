@@ -37,6 +37,20 @@
   </div>
 </template>
 
+<!-- added button colors to match toro net
+-->
+<style scoped>
+.btn-primary {
+  border: 0;
+  background: #610B21;
+  color: white;
+}
+.btn-primary:hover {
+  background: #DBA901;
+  color: white;
+}
+</style>
+
 <script>
 
 export default {
