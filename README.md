@@ -12,7 +12,7 @@ Change your directory into the dir on your VirtualBox Ubuntu virtual machine.
 $ cd toro-net
 ```
 
-Update your environment setting in `bin/run-front-end.sh`
+Update your environment settings in `bin/run-front-end.sh`
 
 ```
 PORT=3000
