@@ -6,7 +6,7 @@ Fork the repo then clone it to your local machine.
 $ git clone https://github.com/<github-user>/toro-net.git [<repo-name>]
 ```
 
-We assume that `$TOPDIR` is relative to `toro-net` directory and all script executions are from the `$TOPDIR` location.
+We assume that `$TOPDIR` is relative to the `toro-net` directory and all script executions are done in the `$TOPDIR` location.
 
 ```bash
 $ cd toro-net
@@ -26,7 +26,7 @@ Install node packages with `npm`.
 $ npm install
 ``` 
 
-## Customization
+## Customizations
 
 Update your environment settings by creating a file `.env` as below:
 
@@ -53,8 +53,12 @@ $ ./bin/run-back-end.sh &
 $ ./bin/run-front-end.sh &
 ```
 
-Log files will be created in `var/log/*.log`.  
+Log files will be created in `var/log/*.log`.  Note that you can monitor the log file with the `tail` command. For example:
 
-## View Application
+```bash
+$ tail -f var/log/frontend.log
+```
+
+## View the Application
 
 Open `http://localhost:3000` in any web browser.
