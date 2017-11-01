@@ -42,11 +42,11 @@
 <style scoped>
 .btn-primary {
   border: 0;
-  background: #610B21;
+  background: #860038;
   color: white;
 }
 .btn-primary:hover {
-  background: #DBA901;
+  background: #EFBA08;
   color: white;
 }
 </style>

@@ -33,20 +33,20 @@
 <style scoped>
 .btn-primary {
   border: 0;
-  background: #610B21;
+  background: #860038;
   color: white;
 }
 .btn-primary:hover {
-  background: #DBA901;
+  background: #EFBA08;
   color: white;
 }
 .btn-github {
   border: 0;
-  background: #2dba4e;;
+  background: #363636;
   color: white;
 }
 .btn-github:hover {
-  background: #298A08;
+  background: #2B2B2B;
   color: white;
 }
 </style>
