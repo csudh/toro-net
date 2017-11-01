@@ -61,7 +61,14 @@ module.exports = function(passport) {
           return done(null, false)
         }
 
-        return done(null, user)
+        bcrypt.compare(password, user.password, function(err, res) {
+          if (err) {
+            return done(null, false)
+          }
+          else {
+            return done(null, user)
+          }
+        })
       })
     }
   ))
