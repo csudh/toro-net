@@ -9,41 +9,11 @@ module.exports = (() => {
     const router = express.Router();
     router.use(flash());
 
-    /* Examples from count.js
-    router.get('/', (req, res) => {
-      Count.findOne({}, countProjection, (err, count) => {
-        if (err) throw err
-        if (!count || count.count === null) {
-
-          const init = new Count({
-            count: 0
-          })
-
-          init.save(err => {
-            if (err) throw err
-            console.log('Init saved')
-            res.json({ count: { count: 0 } })
-          })
-        } else {
-          console.log('Count found: ', count)
-          res.json({ count })
-        }
-      })
-    })
-
-    router.post('/', (req, res) => {
-      const { count } = req.body
-      const newScore = count
-
-      Count.findOneAndUpdate({}, { count: newScore }, { projection: countProjection }, (err, score) => {
-        if (err) throw err
-        res.json({ count: newScore })
-      })
-    })
-    */
+    
+    
 
     /* User registration API endpoint */
-    router.post('/', (req, res) => {
+    router.post('/register', (req, res) => {
       // Confirm passwords match.
       
      /* if (req.body.password !== req.body.passwordConf) {
@@ -77,31 +47,7 @@ module.exports = (() => {
           createdOn: new Date
         })
 
-        // newUser.save(function(err, newUser) {
-				// 	if (err && err.code === 11000) {
-        //     let field;
-        //     // req.flash("error",{msg: req.t("emailchck")});
-        //   }})
-				// 		if(err.message.includes(".$")) {
-				// 			field = err.message.split(".$")[1];
-				// 		}
-				// 		else if (err.message.includes("index: ")) {
-				// 			field = err.message.split("index: ")[1];
-				// 		}
-				// 		else {
-				// 			req.flash("error", { msg: req.t("UserSaveError") });
-				// 			done(err, newUser);
-				// 			return
-				// 		}
-				// 		field = field.split(" dup key")[0];
-				// 		field = field.substring(0, field.lastIndexOf("_"));						
-				// 		if (field == "email")
-				// 			req.flash("error", { msg: req.t("EmailIsExists") });
-				// 		else 
-				// 			req.flash("error", { msg: req.t("UsernameIsExists") });
-				// 	}
-				// 	done(err, newUser);
-        // })
+        
         
         console.log("newUser created");
 
@@ -111,10 +57,11 @@ module.exports = (() => {
           if (err) {
               throw err
           }
+          res.status(200).send();
           req.flash('successMessage', 'User registered successfully.');
           //res.locals.messages= req.flash();
           //res.redirect('/login');
-          res.json({ message: 'User registered successfully.' })
+          //res.json({ message: 'User registered successfully.' })
         })
       }
     })

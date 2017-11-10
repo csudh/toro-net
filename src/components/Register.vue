@@ -102,7 +102,12 @@ export default {
         password: this.password,
         passwordConf: this.passwordConf,
       }
-      this.$store.dispatch('register', newUser)
+      this.$store.dispatch('register', newUser).then(res => {
+        if (res.status == 200){
+          alert('Registration Successful!');
+          this.$router.push('/login');
+        }
+      })
     }
   },
   mounted(){
