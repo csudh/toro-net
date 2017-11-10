@@ -67,15 +67,7 @@
 <script>
 export default {
   name: 'Register',
-  data() {
-    return {
-      displayName: '',
-      username: '', 
-      email: '',
-      password: '',
-      passwordConf: '' 
-    }
-  },
+  
  
   methods: {
 
@@ -83,7 +75,27 @@ export default {
       e.preventDefault();
       this.$validator.validateAll().then((result) => {
         if (result){
-          document.querySelector("#register").submit();
+         const newUser = {
+            displayName: this.displayName,
+            username: this.username,
+            email: this.email,
+            password: this.password,
+            question1: this.question1,
+          question2: this.question2,
+          question3: this.question3,
+            createdOn: new Date
+          }
+
+          this.$store.dispatch('registerUser', newUser)
+          .then(res => {
+             if (res.status == 200) {
+              alert('Registration successful!')
+              this.$router.push('/login')
+            }
+          }, err => {
+            alert('Registration failed!')
+            this.$router.push('/register')
+          })
           return
         }
       })
@@ -93,22 +105,8 @@ export default {
             return
           }*/
         
-    },
-    registerUser() {
-      const newUser = {
-        displayName: this.displayName,
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        passwordConf: this.passwordConf,
-      }
-      this.$store.dispatch('register', newUser).then(res => {
-        if (res.status == 200){
-          alert('Registration Successful!');
-          this.$router.push('/login');
-        }
-      })
     }
+    
   },
   mounted(){
     this.$store.dispatch(getUser);
