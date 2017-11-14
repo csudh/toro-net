@@ -10,7 +10,19 @@ module.exports = (() => {
     router.use(flash());
 
     
-    
+    /* User listing endpoint */
+    router.get('/list', (req,res) => {
+      console.log("Listing all users")
+      res.json({message:"User list here!"})
+      User.find({}).toArray( function(err, result) {
+          if (err) throw err;
+          else{
+            
+            res.send(JSON.stringify(result));
+            console.log(result);
+          }
+      })
+    });
 
     /* User registration API endpoint */
     router.post('/register', (req, res) => {

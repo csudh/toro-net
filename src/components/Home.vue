@@ -14,6 +14,7 @@
   </div>
   <div class="container" v-else>
     <h4>You must login to access Toro Net!</h4>
+    <img src="https://qph.ec.quoracdn.net/main-qimg-0102f6e770d2ce1f45bd7066524b8f70" alt="Avatar" style="width:60%" class="w3-circle w3-margin-top">
   </div>
 </template>
 

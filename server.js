@@ -8,7 +8,8 @@ const express = require('express'),
       count = require('./server/routes/count'),
       auth = require('./server/routes/auth'),
       index = require('./server/routes/index'),
-      users = require('./server/routes/users')
+      users = require('./server/routes/users'),
+      posts = require('./server/routes/posts')
 
 
 
@@ -37,6 +38,7 @@ app.use('/auth', auth)
 app.use('/count', count)
 app.use('/', index)
 app.use('/users', users)
+app.use('/posts', posts)
 
 const port =  process.env.PORT || 3000;
 app.listen(port, () => console.log('Running on localhost:', port))

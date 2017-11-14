@@ -39,12 +39,24 @@ module.exports = (() => {
     })
 
     router.post('/', (req, res) => {
-      const { post } = req.body
-      const newPost = post
+      const newPost = new Post({
+        user: 'Janani',
+        title: req.body.title,
+        body: req.body.body,
+        createdOn: new Date
+      })
 
-      Post.create(newPost, (err, post) => {
-        if (err) throw err
-        res.json({ posts: newPost })
+      
+      
+      console.log("newPost created");
+
+      // Attempt to create the new user in the database.
+      Post.create(newPost, (err) => {
+        console.log(newPost)
+        if (err) {
+            throw err
+        }
+        res.status(200).send();
       })
     })
 
