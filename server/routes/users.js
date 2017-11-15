@@ -7,22 +7,40 @@ module.exports = (() => {
     'use strict';
 
     const router = express.Router();
-    router.use(flash());
-
-    
+   
     /* User listing endpoint */
-    router.get('/list', (req,res) => {
-      console.log("Listing all users")
-      res.json({message:"User list here!"})
-      User.find({}).toArray( function(err, result) {
+    router.get('/list/all', (req,res) => {
+           
+      User.find({}, function(err,users){
           if (err) throw err;
-          else{
+          else {
+            var userMap = {};
             
-            res.send(JSON.stringify(result));
-            console.log(result);
+                users.forEach(function(user) {
+                  userMap[user._id] = user;
+                });
+            res.send(JSON.stringify(userMap));         
           }
+        })
+    })
+
+
+    /*endpoint to provide partial list of useres based on keyword search*/
+    router.get('/list/:keyword', (req,res) => {
+      console.log("Listing users who matched the search")
+      //res.json({message:"User list here!"})
+      User.find({username: {$regex: req.params.keyword}}, function(err, users) {
+        if (err) throw err;
+        var userMap = {};
+    
+        users.forEach(function(user) {
+          userMap[user._id] = user;
+        });
+    res.send(JSON.stringify(userMap));
+     
       })
     });
+    
 
     /* User registration API endpoint */
     router.post('/register', (req, res) => {

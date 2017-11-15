@@ -21,24 +21,28 @@ mongoose.connect(process.env.MONGO_URI);
 
 let app = express()
 
+
 app.use(express.static(path.join(__dirname, './dist')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use(session({
   secret: 'test-secret',
   resave: false,
   saveUninitialized: true,
   cookie: {httpOnly: true,maxAge:2495000000}
 }))
+
 app.use(cookieParser('test-secret'))
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/auth', auth)
-app.use('/count', count)
+
+app.use('/users', users),
+app.use('/auth', auth),
+app.use('/count', count),
+app.use('/posts', posts),
 app.use('/', index)
-app.use('/users', users)
-app.use('/posts', posts)
 
 const port =  process.env.PORT || 3000;
 app.listen(port, () => console.log('Running on localhost:', port))

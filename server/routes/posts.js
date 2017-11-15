@@ -38,17 +38,19 @@ module.exports = (() => {
       })
     })
 
-    router.post('/', (req, res) => {
+    router.post('/create', (req, res) => {
+      
       const newPost = new Post({
-        user: 'Janani',
+        user: req.body.user,
         title: req.body.title,
         body: req.body.body,
         createdOn: new Date
       })
+    
 
       
       
-      console.log("newPost created");
+      console.log(req.body);
 
       // Attempt to create the new user in the database.
       Post.create(newPost, (err) => {
@@ -58,6 +60,7 @@ module.exports = (() => {
         }
         res.status(200).send();
       })
+    
     })
 
     return router;
