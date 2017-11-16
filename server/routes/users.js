@@ -58,7 +58,6 @@ module.exports = (() => {
         if(docs.length){
           const err = new Error('User already exists!')
           err.status = 400
-          req.flash("error","User already exists!")
           res.json({ message: 'User already exists!' })
           
           //res.locals.messages=req.flash()
@@ -88,7 +87,6 @@ module.exports = (() => {
               throw err
           }
           res.status(200).send();
-          req.flash('successMessage', 'User registered successfully.');
           //res.locals.messages= req.flash();
           //res.redirect('/login');
           //res.json({ message: 'User registered successfully.' })
@@ -110,9 +108,6 @@ module.exports = (() => {
                   errors:errors
               });
           } else {
-              
-      
-              req.flash('success_msg', 'Your password has been reset.');
               res.redirect('/login');
               
           }
