@@ -1,5 +1,11 @@
+//import { ObjectId } from '../../../../.cache/typescript/2.6/node_modules/@types/bson';
+
+//import { ObjectId } from '../../../../.cache/typescript/2.6/node_modules/@types/bson';
+
 const express = require('express'),
       Post = require('../models/post')
+
+      var mongodb = require('mongodb'); 
 
 module.exports = (() => {
     'use strict';
@@ -40,7 +46,7 @@ module.exports = (() => {
 
 
 
-        /*endpoint to provide partial list of posts based on keyword search*/
+    /*endpoint to provide partial list of posts based on keyword search*/
     /* List all Posts Based on Keyword Search */
     router.get('/list/:keyword', (req,res) => {
       console.log("Listing posts who match the search")
@@ -53,25 +59,63 @@ module.exports = (() => {
           userMap[user._id] = user;
         });
     res.send(JSON.stringify(userMap));
-     
+        
       })
     });
 
+
+//     /* Endpoint: Delete Single Post Based on  */
+    /* new attempt */
+    router.get('/delete/:id', (req, res) => {
+          Post.remove( Post.findById(req.params.id) ,  (err, result) => {
+              console.log('Endpoint: Delete Post')
+                  if(err){
+                    console.log('Error in delete post');
+                    res.status(204).send();//No record
+                  }
+                  else{
+                    console.log('No error in delete post');//, result);
+                    res.status(200).send();
+                    //res.json({result})
+                  }
+        })
+    })//End of Endpoint
+
+
     
 
-    router.post('/create', (req, res) => {
-      
+//     /* Endpoint: Delete Many Posts Based on  */
+    /* not working yet */
+    router.get('/deleteMany/:id', (req, res) => {
+      //Post.find({}, (err, posts) => {
+          Post.remove( Post.findById(req.params.id) ,  (err, result) => {
+              console.log('Endpoint: Delete Post')
+                  if(err){
+                    console.log('Error in delete post');
+                    res.status(204).send();//No record
+                  }
+                  else{
+                    console.log('No error in delete post');//, result);
+                    res.status(200).send();
+                    //res.json({result})
+                  }
+        })
+    })//End of Endpoint
+
+
+
+
+
+    
+
+    router.post('/create', (req, res) => {      
       const newPost = new Post({
         user: req.body.user,
         title: req.body.title,
         body: req.body.body,
         createdOn: new Date
-      })    
-      
-      console.log(req.body);  
-       
-      
-      
+      })          
+      console.log(req.body);             
       // Attempt to create the new user in the database.
       Post.create(newPost, (err) => {
         console.log(newPost)
@@ -79,9 +123,11 @@ module.exports = (() => {
             throw err
         }
         res.status(200).send();
-      })
-    
+      })    
     })
+
+
+
 
     return router;
 })();
