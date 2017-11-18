@@ -44,6 +44,7 @@ passport.deserializeUser(function(obj, done) {
 router.get('/github',
   passport.authenticate('github'))
 
+<<<<<<< HEAD
 router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
@@ -54,8 +55,19 @@ router.get('/github/callback',
 /* Email/password */
 router.post('/local',
   passport.authenticate('local', { failureRedirect: '/login' , successRedirect: '/' }),
+=======
+router.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }), 
   function(req, res) {
-    res.redirect('/')
+    res.redirect('/counter')
+  })
+
+/* Email/password */
+router.post('/local', 
+  passport.authenticate('local', { failureRedirect: '/login' }), 
+>>>>>>> 2db63b24b81a3019a4e03a2c100d9170107c4043
+  function(req, res) {
+    res.redirect('/counter')
   })
 
   router.post('/forgot', function(req, res){

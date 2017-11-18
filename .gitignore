@@ -1,9 +1,16 @@
-.DS_Store
 node_modules/
+var/
+dist/
 .vagrant/
+<<<<<<< HEAD
 dist/
 var/
 *.log
 npm-debug.log
 yarn-error.log
+=======
+#dist/
+*.log
+>>>>>>> 2db63b24b81a3019a4e03a2c100d9170107c4043
 .env
+.DS_Store

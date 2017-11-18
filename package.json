@@ -13,6 +13,8 @@
     "axios": "^0.16.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
+    "connect-ensure-login": "^0.1.1",
+    "connect-mongo": "^2.0.0",
     "connect-mongostore": "^0.1.4",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
@@ -23,10 +25,16 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
+<<<<<<< HEAD
     "passport-github2": "^0.1.11",
     "passport-local": "^1.0.0",
     "req-flash": "0.0.3",
     "vee-validate": "^2.0.0-rc.19",
+=======
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "vee-validate": "^2.0.0-rc.18",
+>>>>>>> 2db63b24b81a3019a4e03a2c100d9170107c4043
     "vue": "^2.2.1",
     "vue-router": "^2.4.0",
     "vuex": "^2.3.0"

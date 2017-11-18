@@ -15,4 +15,8 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - &&
 sudo apt-get install -y nodejs 
 npm install
 
+<<<<<<< HEAD
 # sudo service mongod start
+=======
+# sudo service mongod start
+>>>>>>> 2db63b24b81a3019a4e03a2c100d9170107c4043

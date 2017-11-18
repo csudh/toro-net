@@ -3,9 +3,12 @@ import Vuex from 'vuex'
 import VeeValidate from 'vee-validate'
 import VueRouter from 'vue-router'
 import store from './store'
+import VeeValidate from 'vee-validate'
 
 Vue.use(VeeValidate)
 Vue.use(VueRouter)
+Vue.use(VeeValidate)
+
 import App from './components/App.vue'
 import Home from './components/Home.vue'
 import Counter from './components/Counter.vue'
