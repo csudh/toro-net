@@ -41,6 +41,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('getPosts')
     this.$store.dispatch('getUser')
   },
 }

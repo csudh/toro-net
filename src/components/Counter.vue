@@ -4,8 +4,10 @@
     <h4>Count: {{this.$store.state.counts.count.count}}</h4>
     <button class="btn btn-primary" @click="incCount()">Increment Count</button>
   </div>
-  <div class="container" v-else>
-    <h4>You must login to access Toro Net!</h4>
+  <div v-else>
+    <router-link to="/login">
+      <button class="btn btn-primary">Login</button>
+    </router-link>
   </div>
 </template>
 
