@@ -1,6 +1,3 @@
-//import { ObjectId } from '../../../../.cache/typescript/2.6/node_modules/@types/bson';
-
-//import { ObjectId } from '../../../../.cache/typescript/2.6/node_modules/@types/bson';
 
 const express = require('express'),
       Post = require('../models/post')
@@ -51,25 +48,16 @@ module.exports = (() => {
       console.log("Endpoint: Listing Posts Based on Keyword Match ")
      Post.find({body: {$regex: req.params.keyword}}, function(err, posts) {
         if (err) throw err;
-        if (!posts) {
-          const init = new Post({
-            id: 0,
-            username: 'ragingbull',
-            displayName: 'Raging Bull',
-            date: Date.now(),
-            title: 'Greetings from California State University, ' +
-              'Dominguez Hills in Carson, CA!',
-            body: 'This post serves as a placeholder.'
-          })
-
-          init.save(err => {
-            if (err) throw err
-            console.log('Sample post initialized.')
-            res.json({ posts: init })
-          })
+        if (!posts || (posts.length<1) ) {
+          console.log('Total Posts Found:  ', posts.length)
+          console.log('No Post Found matching the keyword.')
+          res.json({ posts })   
         }
         else {
-          console.log('Posts retrieved: ', posts)
+          console.log('Total Posts Found:  ', posts.length)
+          console.log('')
+          console.log('POSTS: ')
+          console.log(' ',posts)          
           res.json({ posts })
         }        
       })
@@ -88,7 +76,7 @@ module.exports = (() => {
                     res.status(204).send();//No record
                   }
                   else{
-                    console.log('No error in delete post');//, result);
+                    console.log('Success in Delete Post');//, result);
                     res.status(200).send();
                     //res.json({result})
                   }
@@ -102,22 +90,18 @@ module.exports = (() => {
     /* not working yet */
     /* ~TEMP~ Delete Many Posts */
     router.post('/deleteMany', (req, res) => {   
-      //var data0 = server
-      var data = JSON.parse(req)
-      var dataString = JSON.stringify(data)
-//      var data = JSON.stringify(req.body)
+      /* Store json data */
+      //var dataStringify = JSON.stringify(req)
       // //data.for()
       // for(var key in data){
       //   var value = data[key]
       //   console.log('Data found: ', value)
 
       // }
-        
-      console.log('Request is: ', dataString)
-      //console.log('Data is : ', JSON.parse(data)  )
-      //console.log('Request is: ', JSON.stringify(req.body) )
-      //console.log('Request is: ', JSON.parse(req) )      
-
+      
+      /* retrieve */
+      //console.lot('test: ', dataParse)
+      console.log('Request received is :  ', req.body)
        
     })//End Endpoint
 
