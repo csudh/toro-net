@@ -7,6 +7,34 @@ module.exports = (() => {
 
     const router = express.Router()
 
+    /* Friend addition API endpoint*/
+    router.post('/add/friend', (req, res) => {
+      /* WARNING: Does not check to see if relationship is already established, may create 
+       * duplicate friend relationship. */
+      
+      /* .env file must be explicity loaded here before the apoc module in order
+       *  to succesfully call neo4j */
+      require('dotenv').load()
+      const apoc = require('apoc')
+      
+      const queryString = 
+        `MATCH (a:User),(b:User) 
+        WHERE a.displayName = '${req.body.sDisplayName}' AND b.displayName = '${req.body.tDisplayName}'
+        AND a.email='${req.body.sEmail}' AND b.email='${req.body.tEmail}'
+        CREATE (a)-[r:FRIEND]->(b)`
+      
+      const query = apoc.query(queryString)
+      query.exec().then((result) => {
+        /* Relationship created successfully */
+        console.log("SUCCESS", result)
+        res.status(200).send()
+      }, (fail) => {
+        /* Relationship not created */
+        console.log("ERROR", fail)
+        res.status(500).send()
+      })
+    })
+
     /* User registration API endpoint */
     router.post('/register', (req, res) => {
       /* Vee-validate already takes care of frontend validation, including:
@@ -57,15 +85,13 @@ module.exports = (() => {
               throw err
             }
             
-            console.log(process.env)
             const queryString = `CREATE (u:User { displayName: "${req.body.displayName}", email: "${req.body.email}" })`
             const query = apoc.query(queryString)
             query.exec().then((result) => {
               console.log(result)
             }, (fail) => {
-              console.log("FAILED: neo4j addition")
-              console.log(queryString)
               console.log(fail)
+              res.status(666).send()
             })
 
             res.status(200).send()
