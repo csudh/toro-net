@@ -46,25 +46,39 @@ module.exports = (() => {
 
 
 
-    /*endpoint to provide partial list of posts based on keyword search*/
-    /* List all Posts Based on Keyword Search */
+    /* Endpoint to provide partial list of posts based on keyword search */
     router.get('/list/:keyword', (req,res) => {
-      console.log("Listing posts who match the search")
-      //res.json({message:"User list here!"})
-      Post.find({body: {$regex: req.params.keyword}}, function(err, users) {
+      console.log("Endpoint: Listing Posts Based on Keyword Match ")
+     Post.find({body: {$regex: req.params.keyword}}, function(err, posts) {
         if (err) throw err;
-        var userMap = {};
-    
-        users.forEach(function(user) {
-          userMap[user._id] = user;
-        });
-    res.send(JSON.stringify(userMap));
-        
+        if (!posts) {
+          const init = new Post({
+            id: 0,
+            username: 'ragingbull',
+            displayName: 'Raging Bull',
+            date: Date.now(),
+            title: 'Greetings from California State University, ' +
+              'Dominguez Hills in Carson, CA!',
+            body: 'This post serves as a placeholder.'
+          })
+
+          init.save(err => {
+            if (err) throw err
+            console.log('Sample post initialized.')
+            res.json({ posts: init })
+          })
+        }
+        else {
+          console.log('Posts retrieved: ', posts)
+          res.json({ posts })
+        }        
       })
-    });
+    });//End Endpoint
 
 
-//     /* Endpoint: Delete Single Post Based on  */
+
+
+    /* Endpoint: Delete Single Post Based on  */
     /* new attempt */
     router.get('/delete/:id', (req, res) => {
           Post.remove( Post.findById(req.params.id) ,  (err, result) => {
@@ -86,23 +100,26 @@ module.exports = (() => {
 
 //     /* Endpoint: Delete Many Posts Based on  */
     /* not working yet */
-    router.get('/deleteMany/:id', (req, res) => {
-      //Post.find({}, (err, posts) => {
-          Post.remove( Post.findById(req.params.id) ,  (err, result) => {
-              console.log('Endpoint: Delete Post')
-                  if(err){
-                    console.log('Error in delete post');
-                    res.status(204).send();//No record
-                  }
-                  else{
-                    console.log('No error in delete post');//, result);
-                    res.status(200).send();
-                    //res.json({result})
-                  }
-        })
-    })//End of Endpoint
+    /* ~TEMP~ Delete Many Posts */
+    router.post('/deleteMany', (req, res) => {   
+      //var data0 = server
+      var data = JSON.parse(req)
+      var dataString = JSON.stringify(data)
+//      var data = JSON.stringify(req.body)
+      // //data.for()
+      // for(var key in data){
+      //   var value = data[key]
+      //   console.log('Data found: ', value)
 
+      // }
+        
+      console.log('Request is: ', dataString)
+      //console.log('Data is : ', JSON.parse(data)  )
+      //console.log('Request is: ', JSON.stringify(req.body) )
+      //console.log('Request is: ', JSON.parse(req) )      
 
+       
+    })//End Endpoint
 
 
 
