@@ -19,9 +19,14 @@ module.exports = (() => {
       
       /* Hash User password first and then create User object to store in DB on 
        * hash success */
+      
+      /* .env file must be explicity loaded here before the apoc module in order
+       *  to succesfully call neo4j */
+      require('dotenv').load()
+      const apoc = require('apoc')
       bcrypt.hash(req.body.password, 10, function(err, hash) {
         if (err) {
-          res.status(409).send()
+          res.status(499).send()
         }
         else {
           const newUser = new User({
@@ -51,7 +56,18 @@ module.exports = (() => {
               console.log(err.message)
               throw err
             }
-    
+            
+            console.log(process.env)
+            const queryString = `CREATE (u:User { displayName: "${req.body.displayName}", email: "${req.body.email}" })`
+            const query = apoc.query(queryString)
+            query.exec().then((result) => {
+              console.log(result)
+            }, (fail) => {
+              console.log("FAILED: neo4j addition")
+              console.log(queryString)
+              console.log(fail)
+            })
+
             res.status(200).send()
           })
         }
