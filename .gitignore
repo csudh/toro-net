@@ -1,8 +1,9 @@
-node_modules/
-var/
-dist/
-.vagrant/
-#dist/
-*.log
-.env
 .DS_Store
+node_modules/
+.vagrant/
+dist/
+var/
+*.log
+npm-debug.log
+yarn-error.log
+.env

@@ -1,34 +1,18 @@
 # Toro Net
 
+## Getting started with VirtualBox
 Fork the repo then clone it to your local machine.
-
-```bash
-$ git clone https://github.com/<github-user>/toro-net.git [<repo-name>]
+```
+git clone https://github.com/<your username>/toro-net.git
 ```
 
-We assume that `$TOPDIR` is relative to the `toro-net` directory and all script executions are done in the `$TOPDIR` location.
-
-```bash
-$ cd toro-net
+Change your directory into the dir on your VirtualBox Ubuntu virtual machine.  
+```
+cd toro-net
 ```
 
-## Dependencies
-
-Install application dependencies, e.g. mongo and nodejs.
-
-```bash
-$ bash bin/install.sh
-```
-
-Install node packages with `npm`.
-
-```bash
-$ npm install
-``` 
-
-## Customizations
-
-Update your environment settings by creating a file `.env` as below:
+Create .env file. Add a `.env` file with your PORT, MONGO_URI, 
+[GITHUB_ID, GITHUB_SECRET and APP_URL](https://github.com/jaredhanson/passport-github) like this:
 
 ```
 PORT=3000
@@ -38,27 +22,30 @@ GITHUB_SECRET=k2hj432kjgjkh2g34kj2g4jkh23g4jk2342jhg34
 APP_URL=http://127.0.0.1:3000/
 ```
 
-## Deploying a Development Environment
+Install dependencies (mongo, node, npm packages).  
+```
+bash dev-env.sh
+```
 
+Install node packages with npm.  
+```
+npm install
+``` 
+
+Build and watch for changes.  
+```
+npm run serve
+```
+
+Open a new terminal window and navigate to toro-net.  
 Run mongo as a service.  
-
-```bash
-$ ./bin/init-db.sh
+```
+sudo service mongod start
 ```
 
-Run the toro-net services.
-
-```bash
-$ ./bin/run-back-end.sh &
-$ ./bin/run-front-end.sh &
+Run the backend using nodemon  
+```
+./node_modules/nodemon/bin/nodemon.js server.js
 ```
 
-Log files will be created in `var/log/*.log`.  Note that you can monitor the log file with the `tail` command. For example:
-
-```bash
-$ tail -f var/log/frontend.log
-```
-
-## View the Application
-
-Open `http://localhost:3000` in any web browser.
+Open http://localhost:3000 in any web browser.

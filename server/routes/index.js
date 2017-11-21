@@ -3,6 +3,7 @@ const express = require('express'),
       path = require('path')
 
 router.get('/isauth', (req, res, next) => {
+  //console.log(req.session)
   res.send(req.user)
 })
 
@@ -13,6 +14,6 @@ router.get('/logout', (req, res, next) => {
 
 router.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../dist/index.html'))
-})
+});
 
 module.exports = router

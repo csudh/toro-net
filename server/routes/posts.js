@@ -2,9 +2,9 @@ const express = require('express'),
       Post = require('../models/post')
 
 module.exports = (() => {
-    'use strict'
+    'use strict';
 
-    const router = express.Router()
+    const router = express.Router();
 
     const postProjection = {
       __v: false,
@@ -38,14 +38,29 @@ module.exports = (() => {
       })
     })
 
-    router.post('/', (req, res) => {
-      const { post } = req.body
-      const newPost = post
-
-      Post.create(newPost, (err, post) => {
-        if (err) throw err
-        res.json({ posts: newPost })
+    router.post('/create', (req, res) => {
+      
+      const newPost = new Post({
+        user: req.body.user,
+        title: req.body.title,
+        body: req.body.body,
+        createdOn: new Date
       })
+    
+
+      
+      
+      console.log(req.body);
+
+      // Attempt to create the new user in the database.
+      Post.create(newPost, (err) => {
+        console.log(newPost)
+        if (err) {
+            throw err
+        }
+        res.status(200).send();
+      })
+    
     })
 
     return router;

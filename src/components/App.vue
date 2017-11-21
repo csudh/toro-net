@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <a href="/">Home</a>
+  <img src="https://images.signaturea.com/sa/assets/logos/page_seals/2302_seal_foil.png" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top"><br>
+    <router-link to="/">Home</router-link>
     <a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a>
-    <a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a>
-    <a v-else href="/login">Login</a>
+    <a v-if="this.$store.state.user.displayName" href="/logout" @click="logout">Logout</a>
+    <router-link v-else to="/login">Login</router-link>
     <h1>{{ title }}</h1>
     <hr />
     <router-view />
