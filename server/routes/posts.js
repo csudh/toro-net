@@ -63,5 +63,20 @@ module.exports = (() => {
     
     })
 
+    router.get('/:id', (req, res) => {
+      
+          Post.find( Post.findById(req.params.id) ,  (err, result) => {
+            console.log('Endpoint: Read Post')
+                if(err){
+                  console.log("Post record doesn't exist!");
+                  res.status(204).send();
+                }
+                else{
+                  console.log('Post found');
+                  res.status(200).send();
+                }
+          })
+        })    
+
     return router;
 })();
