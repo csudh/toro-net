@@ -7,33 +7,6 @@ module.exports = (() => {
 
     const router = express.Router()
 
-    /* Friend addition API endpoint*/
-    router.post('/add/friend', (req, res) => {
-      /* WARNING: Does not check to see if relationship is already established, may create 
-       * duplicate friend relationship. */
-      
-      /* .env file must be explicity loaded here before the apoc module in order
-       *  to succesfully call neo4j */
-      require('dotenv').load()
-      const apoc = require('apoc')
-      
-      const queryString = 
-        `MATCH (a:User),(b:User) 
-        WHERE a.displayName = '${req.body.sDisplayName}' AND b.displayName = '${req.body.tDisplayName}'
-        AND a.email='${req.body.sEmail}' AND b.email='${req.body.tEmail}'
-        CREATE (a)-[r:FRIEND]->(b)`
-      
-      const query = apoc.query(queryString)
-      query.exec().then((result) => {
-        /* Relationship created successfully */
-        console.log("SUCCESS", result)
-        res.status(200).send()
-      }, (fail) => {
-        /* Relationship not created */
-        console.log("ERROR", fail)
-        res.status(500).send()
-      })
-    })
 
     /* User registration API endpoint */
     router.post('/register', (req, res) => {
@@ -85,7 +58,7 @@ module.exports = (() => {
               throw err
             }
             
-            const queryString = `CREATE (u:User { displayName: "${req.body.displayName}", email: "${req.body.email}" })`
+            const queryString = `CREATE (u:User { username: "${req.body.username}" })`
             const query = apoc.query(queryString)
             query.exec().then((result) => {
               console.log(result)
@@ -98,7 +71,103 @@ module.exports = (() => {
           })
         }
       })
-  })
+    })
 
-    return router;
-})()
+    /* Friend addition API endpoint*/
+    router.post('/add/friend', (req, res) => {
+      /* WARNING: Does not check to see if relationship is already established, may create 
+      * duplicate friend relationship. */
+      
+      /* .env file must be explicity loaded here before the apoc module in order
+      *  to succesfully call neo4j */
+      require('dotenv').load()
+      const apoc = require('apoc')
+      
+      const queryString = 
+        `MATCH (a:User),(b:User) 
+        WHERE a.username = '${req.body.sUsername}' AND b.username = '${req.body.tUsername}'
+        CREATE (a)-[r:isFriends {connects:a.username + "<-->" + b.username}]->(b)`
+      
+      const query = apoc.query(queryString)
+      query.exec().then((result) => {
+        /* Relationship created successfully */
+        console.log("SUCCESS", result)
+        res.status(200).send()
+      }, (fail) => {
+        /* Relationship not created */
+        console.log("ERROR", fail)
+        res.status(500).send()
+      })
+    })
+
+    /* Friend list API endpoint */
+    router.get('/list/friend/:username/:degree', (req, res) => {
+      /* .env file must be explicity loaded here before the apoc module in order
+      *  to succesfully call neo4j */
+      require('dotenv').load()
+      const apoc = require('apoc')
+
+      const queryString = 
+        `MATCH (a:User), (b:User)
+        WHERE a.username="${req.params['username']}" and (a) -[:friend*1..${req.params['degree']}]- (b)
+        RETURN distinct b.username`
+      const query = apoc.query(queryString)
+
+      query.exec().then((result) => {
+        const resultArray = []
+        const dataLength = result[0]['data'].length
+        for (var i = 0; i < dataLength; i++) {
+          resultArray.push(result[0]['data'][i]['row'][0])
+        }
+
+        res.json({
+          'data': resultArray,
+          'length': dataLength
+        })
+      }, (fail) => {
+        console.log(fail)
+      })
+    })
+    
+    /* Friend graph API endpoint */
+    router.get('/list/friend/connections/:username/:degree', (req, res) => {
+      /* .env file must be explicity loaded here before the apoc module in order
+      *  to succesfully call neo4j */
+      require('dotenv').load()
+      const apoc = require('apoc')
+
+      const queryString = 
+        `MATCH (u:User {username: '${req.params['username']}'})-[r:friend*1..${req.params['degree']}]-(v:User)
+        WHERE u <> v
+        RETURN r`
+      const query = apoc.query(queryString)
+      
+      query.exec().then((result) => {
+        var resultMap = new Map()
+        for (var i = 0; i < result[0]['data'].length; i++) {
+          const dataList = result[0]['data'][i]['row'][0]
+          for (var j = 0; j < dataList.length; j ++) {
+            var rowNames = dataList[j]['connects'].split('<-->')
+            rowNames = rowNames.sort()
+
+            if ( resultMap.has(rowNames[0]) ) {
+              if ( !resultMap.get(rowNames[0]).includes(rowNames[1]) ) {
+                resultMap.get(rowNames[0]).push(rowNames[1])
+              }
+            } else {
+              resultMap.set(rowNames[0], [rowNames[1]])
+            }
+          }
+        }
+        var jsonObj = {}
+        resultMap.forEach((value, key) => {
+          jsonObj[key] = value
+        })
+        res.json(jsonObj)
+      }, (fail) => {
+        console.log(fail) 
+      })
+    })
+  
+  return router;
+})();

@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/auth', auth)
 app.use('/count', count)
-app.use('/', index)
 app.use('/users', users)
+app.use('/', index)
 
 /* Catch all errors and log them. */
 app.use(function(err, req, res, next) {
