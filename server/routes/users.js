@@ -94,6 +94,8 @@ module.exports = (() => {
       }
     })
     })
+
+/*Reset password for a user*/
     router.post('/reset', function(req, res){
       var password = req.body.password;
       var password2 = req.body.password2;
@@ -112,7 +114,8 @@ module.exports = (() => {
               
           }
       });
-      // update user
+
+      // update single user
 router.put('/update/:id', (req, res, next) => {
   console.log("Endpoint: update user");  
   User.update(User.findById(req.params.id) , req.body, (err, result) => {        
@@ -130,5 +133,42 @@ router.put('/update/:id', (req, res, next) => {
   }
 })
 })  
+
+/*endpoint of read a single user*/
+router.get('/:id',(req,res)=> {
+User.find(User.findById(req.params.id),(err,user)=> {
+console.log('Endpoint: Read a user')
+//console.log(req.params.id);
+console.log(user);
+if (err) {
+  console.log("User not fount");
+}
+else {
+  res.send(JSON.stringify(user));
+  console.log('read a user success');
+  //console.log(user);
+  //res.status(304).send()
+  //res.json({message: 'user found'});
+}
+})
+});
+
+/*endpoint of delete a single user*/ 
+router.get('/delete/:id', (req, res) => {
+User.remove(User.findById(req.params.id), (err,user) => {
+  console.log('Endpoint: Delete a user')
+      if(err){
+        console.log('Error in delete a user');
+        res.status(204).send();
+      }
+      else {
+        console.log('delete a user success'); 
+        res.status(200).send();
+      }
+})
+});//End of Endpoint
+
+
+
     return router;
 })();

@@ -24,5 +24,13 @@ curl -d "user=test4@aol.com&title=Post006&body=sixthexamcsc501finalexam" -X POST
 
 # List all Posts Based on Keyword Search Example #
 curl http://localhost:3000/posts/list/exam
+#delete a user
+
+curl http://localhost:3000/users/delete/5a126c7393770c43532a476d
+
+# read a user #
+curl http://localhost:3000/users/5a126bd993770c43532a476c
+
+
 
 
