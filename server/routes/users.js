@@ -112,6 +112,23 @@ module.exports = (() => {
               
           }
       });
+      // update user
+router.put('/update/:id', (req, res, next) => {
+  console.log("Endpoint: update user");  
+  User.update(User.findById(req.params.id) , req.body, (err, result) => {        
+// if the user is not in the database
+  if (err) {
+    console.log("User record doesn't exist!")
+    res.status(204).send();
+  }      
+     // if the user is found
+  else{
 
+      // update the  user in the database is done.
+    console.log("success");
+    res.status(200).send();
+  }
+})
+})  
     return router;
 })();
