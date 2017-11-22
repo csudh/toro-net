@@ -73,7 +73,7 @@ module.exports = (() => {
                 }
                 else{
                   console.log('Post found');
-                  res.status(200).send();
+                  res.send(JSON.stringify(result));
                 }
           })
         })    
