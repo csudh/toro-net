@@ -9,3 +9,20 @@ curl  http://localhost:3000/users/list/all
 # Replace test with any keyword
 curl  http://localhost:3000/users/list/test
 
+# Add/Creat Posts for Testing
+curl -d "user=test4@aol.com&title=Exam01&body=FirstExamination" -X POST http://localhost:3000/posts/create/
+
+curl -d "user=test4@aol.com&title=Exam02&body=SecondMidtermExam" -X POST http://localhost:3000/posts/create/
+
+curl -d "user=test4@aol.com&title=Exam03&body=ThirdQuizCSC583" -X POST http://localhost:3000/posts/create/
+
+curl -d "user=test4@aol.com&title=Exam04&body=FourthExamcsc501finalexam" -X POST http://localhost:3000/posts/create/
+
+curl -d "user=test4@aol.com&title=Post005&body=FifthExamcsc501finalexam" -X POST http://localhost:3000/posts/create/
+
+curl -d "user=test4@aol.com&title=Post006&body=sixthexamcsc501finalexam" -X POST http://localhost:3000/posts/create/
+
+# List all Posts Based on Keyword Search Example #
+curl http://localhost:3000/posts/list/exam
+
+
