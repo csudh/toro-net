@@ -1,8 +1,9 @@
 
+
 const express = require('express'),
       Post = require('../models/post')
 
-      var mongodb = require('mongodb'); 
+      
 
 module.exports = (() => {
     'use strict';
@@ -86,23 +87,58 @@ module.exports = (() => {
 
     
 
-//     /* Endpoint: Delete Many Posts Based on  */
+    /* Endpoint: Delete Many Posts Based on  */
     /* not working yet */
     /* ~TEMP~ Delete Many Posts */
     router.post('/deleteMany', (req, res) => {   
-      /* Store json data */
-      //var dataStringify = JSON.stringify(req)
-      // //data.for()
-      // for(var key in data){
-      //   var value = data[key]
-      //   console.log('Data found: ', value)
+      /* json data */
+      var errorsInDeleting=false;
+      console.log('Endpoint: Delete Many Posts')      
+      for(var key in req.body.deleteIds){
+        var idToDelete = req.body.deleteIds[key]
+        console.log('ID :  ', idToDelete )
 
-      // }
-      
-      /* retrieve */
-      //console.lot('test: ', dataParse)
-      console.log('Request received is :  ', req.body)
-       
+        /* Delete One ID */
+        Post.remove( Post.findById( idToDelete ) , (err, result) => {
+          if(err){
+            console.log('Failure (Error): Delete Post ', err);
+            //res.status(204).send();//No record
+          }
+          if(!result){//.length<1){//} || result.length<1){
+            console.log('FAIL: No Results')
+            console.log('FAIL: Did Not Delete ID: ', idToDelete)
+            errorsInDeleting=true;
+            //res.status(204).send();//No record
+          }
+          else{
+            console.log('Success in Delete Post');//, result);
+            console.log('Deleted Post ID:', idToDelete )
+            //res.status(200).send();
+          }
+        })
+
+        /* try find [2] */
+        // Post.find( Post.findById( idToDelete ) , function(err, posts) {
+        //   if (err) throw err;
+        //   if (!posts || (posts.length<1) ) {
+        //     console.log('Total Posts Found:  ', posts.length)
+        //     console.log('No Post Found matching the keyword.')
+        //     //res.json({ posts })   
+        //   }
+        //   else {
+        //     console.log('Total Posts Found:  ', posts.length)
+        //     console.log('')
+        //     console.log('POSTS: ')
+        //     console.log(' ',posts)    
+        //     Post.remove( Post.findById( idToDelete ) ,(err, result) => {} )      
+        //     //res.json({ posts })
+        //   }        
+        // })
+        /*  */
+
+       } //End for
+       res.json({})       
+
     })//End Endpoint
 
 
