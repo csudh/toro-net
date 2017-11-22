@@ -1,11 +1,12 @@
 
 
 const express = require('express'),
-Post = require('../models/post')
+      Post = require('../models/post')
 
       
 
 module.exports = (() => {
+
 'use strict';
 
 const router = express.Router();
@@ -161,26 +162,25 @@ Post.create(newPost, (err) => {
 })
 })
 
-// Update POST 
-router.put('/update/:id', (req, res, next) => {
-
-  console.log("EndPoint : update Post");
-
-  Post.update(Post.findById(req.params.id),req.body, (err, result) => {
-
-    if (err) {
-      console.log("Post record doesn't exist!");
-      res.status(204).send();
-             }
-    else{
-     
-      console.log("success");
-      res.status(200).send();
-           
-        }
-  })
-  })
-
+       // Update POST 
+     router.put('/update/:id', (req, res, next) => {
+  
+    console.log("EndPoint : update Post");
+  
+    Post.update(Post.findById(req.params.id),req.body, (err, result) => {
+  
+      if (err) {
+        console.log("Post record doesn't exist!");
+        res.status(204).send();
+               }
+      else{
+       
+        console.log("success");
+        res.status(200).send();
+             
+          }
+    })
+    })
 
     router.get('/:id', (req, res) => {
       
@@ -198,8 +198,6 @@ router.put('/update/:id', (req, res, next) => {
         })    
 
 
-
-
     return router;
-})();
-
+})
+();
