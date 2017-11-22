@@ -31,6 +31,8 @@ Install node packages with `npm`.
 $ npm install
 ``` 
 
+Additionally, you will need to install Neo4j as well as Java 8 in order to run Toro-net. 
+
 ## Customizations
 
 Update your environment settings by creating a file `.env` as below:
@@ -41,6 +43,11 @@ MONGO_URI=mongodb://127.0.0.1:27017/toro-net
 GITHUB_ID=233245n234566kjh243f
 GITHUB_SECRET=k2hj432kjgjkh2g34kj2g4jkh23g4jk2342jhg34
 APP_URL=http://127.0.0.1:3000/
+NEO4J_PROTOCOL=http
+NEO4J_HOST=127.0.0.1
+NEO4J_PORT=7474
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=neo4j
 ```
 ---
 ## Virtual Box Setup Instructions
