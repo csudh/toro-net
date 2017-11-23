@@ -8,11 +8,10 @@
 
 
 
-
-
 	#		#
 	# CRUD - Users	#
 	#		#
+
 
 # Create User
 # curl -d "displayName=<dn>&email=<em>&username=<un>&password=<Abb#?>&question1=<Answer>&question2=<Answer>&question3=<Answer>" -X POST http://localhost:3000/users/register
@@ -32,8 +31,19 @@ curl  http://localhost:3000/users/list/all
 curl http://127.0.0.1:3000/users/list/
 
 
-# Users - Update User 								# What is syntax to test?
-curl http://127.0.0.1:3000/users/update/:id
+# Users - Update User Informatoion
+	
+		# Update all the information for a user
+		# curl -d "displayName=<name>&email=<em>&username=<un>&password=<Aaaa#1$>&question1=<1>&question2=<2>&question3=<3>" -X PUT http://localhost:3000/users/update/<User_Id>
+		curl -d "displayName=test3&email=test3@mail.com&username=test3user&password=Password3$&question1=test3Q1&question2=test3Q2&question3=test3Q3" -X PUT http://localhost:3000/users/update/5a12e236c4ce593524b8e669
+			
+		# Update the email and username only for a user
+		# curl -d "email=<em>&username=<un>" -X PUT http://localhost:3000/users/update/<User_Id>
+		curl -d "email=test4@mail.com&username=test4user" -X PUT http://localhost:3000/users/update/5a128b40db1f9731506f6aee
+	
+		# Updatade only the displayname for a user
+		# curl -d "displayName=<name>" -X PUT http://localhost:3000/users/update/<User_Id>
+		curl -d "displayName=test5" -X PUT http://localhost:3000/users/update/5a12e1cdc4ce593524b8e668
 
 
 # Users - Delete Single User
@@ -47,6 +57,7 @@ curl http://127.0.0.1:3000/users/delete/
 	#		#
 	# CRUD - Posts	#
 	#		#
+
 
 # Posts - Creat a Post
 # curl -d "user=test4@aol.com&title=Exam01&body=FirstExamination" -X POST http://localhost:3000/posts/create/
@@ -76,12 +87,3 @@ curl http://127.0.0.1:3000/posts/delete/5a0fad944c658e1e0ec4ad2f
 # Posts - Delete Multiple Post
 # curl -d '{  "deleteIds" : ["<Post_Id-1>","<Post_Id-2>",...] }' -H "Content-Type: application/json" -X POST http://127.0.0.1:3000/posts/deleteMany
 curl -d '{  "deleteIds" : ["5a157e113902060f1a2e5368","5a157e123902060f1a2e5369"] }' -H "Content-Type: application/json" -X POST http://127.0.0.1:3000/posts/deleteMany
-
-
-
-
-
-
-
-
-
