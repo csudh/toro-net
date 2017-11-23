@@ -113,7 +113,7 @@ Post.find({}, (err, posts) => {
           else{
             console.log('Success in Delete Post');//, result);
             console.log('Deleted Post ID:', idToDelete )
-            res.status(200).send();
+            //res.status(200).send();
           }
         })
 
