@@ -135,7 +135,7 @@ router.put('/update/:id', (req, res, next) => {
 })  
 
 /*endpoint of read a single user*/
-router.get('/:id',(req,res)=> {
+router.get('  ',(req,res)=> {
 User.find(User.findById(req.params.id),(err,user)=> {
 console.log('Endpoint: Read a user')
 //console.log(req.params.id);
