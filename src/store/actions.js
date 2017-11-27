@@ -4,12 +4,10 @@ import axios from 'axios'
 export const getUser = ({commit}) => {
   axios.get('/isauth')
   .then(function (response) {
-    console.log('Retrieved user data: ', response.data);
     commit(types.GET_USER, response.data)
   })
   .catch(function (error) {
-    console.log(error);
-  });
+  })
 }
 
 export const getCount = ({commit}) => {
@@ -72,8 +70,7 @@ export const login = ({commit}) => {
     commit(types.LOGIN, response.data)
   })
   .catch(function (error) {
-    console.log(error);
-  });
+  })
 }
 
 export const logout = ({commit}) => {
@@ -99,10 +96,8 @@ export const addPost = ({commit}, postsPayload) => {
 export const getPosts = ({commit}) => {
   axios.get('/posts')
   .then(function (response) {
-    console.log('Retrieved posts: ', response.data);
     commit(types.GET_POSTS, response.data)
   })
   .catch(function (error) {
-    console.log(error);
-  });
+  })
 }
