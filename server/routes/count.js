@@ -11,7 +11,7 @@ module.exports = (() => {
       _id: false
     }
 
-    router.get('/', (req, res) => {
+    router.get('/', checkAuthentication, (req, res) => {
       Count.findOne({}, countProjection, (err, count) => {
         if (err) throw err
         if (!count || count.count === null) {
@@ -32,7 +32,7 @@ module.exports = (() => {
       })
     })
 
-    router.post('/', (req, res) => {
+    router.post('/', checkAuthentication, (req, res) => {
       const { count } = req.body
       const newScore = count
 
@@ -42,5 +42,14 @@ module.exports = (() => {
       })
     })
 
-    return router;
+    function checkAuthentication(req, res, next) {
+      if (req.isAuthenticated()) {
+        next()
+      }
+      else {
+        res.redirect('/login')
+      }
+    }
+
+    return router
 })();
