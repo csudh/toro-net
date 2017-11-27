@@ -29,14 +29,6 @@ export default {
   name: 'Home',
   data() {                                    
     return {
-      // date: Date.now(),
-      // username: this.$store.user.username,
-      // email: this.$store.user.email,
-      // displayName: this.$store.user.displayName,
-      // Are the above data to be included here?
-      // I think not, since the data would be passed around more times 
-      // than is probably necessary... $store is accessible globally 
-      // throughout the app after all.
       title: '',
       body: ''
     };
