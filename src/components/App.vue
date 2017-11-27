@@ -14,7 +14,7 @@
           <ul class="nav navbar-nav">
             <li><a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a></li>
             <li><a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a></li>
-            <!--<li><a v-if="!this.$store.state.user.displayName" href="/login">Login</a></li>-->
+            <li><a v-if="!this.$store.state.user.displayName" href="/login">Login</a></li>
           </ul>
         </div>
       </div>
