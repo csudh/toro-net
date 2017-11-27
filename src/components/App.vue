@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-  <img src="https://images.signaturea.com/sa/assets/logos/page_seals/2302_seal_foil.png" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top"><br>
-    <router-link to="/">Home</router-link>
-    <a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a>
-    <a v-if="this.$store.state.user.displayName" href="/logout" @click="logout">Logout</a>
-    <router-link v-else to="/login">Login</router-link>
-    <h1>{{ title }}</h1>
-    <hr />
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Toro Net</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a v-if="!this.$store.state.user.displayName" href="/register" @click="register">Register</a></li>
+            <li><a v-if="this.$store.state.user.displayName" href="/logout" >Logout</a></li>
+            <li><a v-if="!this.$store.state.user.displayName" href="/login">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <router-view />
   </div>
 </template>
@@ -36,8 +48,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 30px;
+  color: #363636;
+  margin-top: 0px;
 }
 
 h1, h2 {
@@ -50,6 +62,38 @@ ul {
 }
 
 a {
-  color: #42b983;
+  color: #363636;
+}
+.btn {
+  border: 0;
+  background: #860038;
+  color: white;
+  outline: 0;
+}
+.btn:active {
+  background: #860038;
+  outline: 0;
+}
+.btn:focus {
+  background: #860038;
+  outline: 0;
+}
+.btn:active:focus {
+  background: #860038;
+  outline: 0;
+}
+.btn-default {
+  border: 0;
+  background: #860038;
+  color: white;
+}
+.btn-primary {
+  border: 0;
+  background: #860038;
+  color: white;
+}
+.btn-primary:hover {
+  background: #EFBA08;
+  color: white;
 }
 </style>

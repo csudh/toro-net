@@ -1,4 +1,4 @@
-<template>
+                                                                                                                                                                                <template>
   <div class="container" v-if="this.$store.state.user.displayName">
     <h4>Welcome {{this.$store.state.user.displayName}}! What's happening?</h4>
     <br>
@@ -9,19 +9,25 @@
       <textarea class="form-control" id="body" rows="5" placeholder="Write your thoughts here..." v-model="body">
       </textarea>
     </div>
-    <button class="btn btn-primary" @click="addPost()">Post!</button>
+    <button class="btn btn-primary" @click="addPost()">Post</button>
     <hr>
   </div>
   <div class="container" v-else>
-    <h4>You must login to access Toro Net!</h4>
-    <img src="https://qph.ec.quoracdn.net/main-qimg-0102f6e770d2ce1f45bd7066524b8f70" alt="Avatar" style="width:60%" class="w3-circle w3-margin-top">
+    <h3>Login to access Toro Net</h3>
+    
+    <div >
+    <a href="/login"><img src="https://i.imgur.com/bGlcYmy.png"/></a> 
+    </div>
+
+    <!--<img src="https://i.imgur.com/ytdAxfF.png">-->                                                                                                
+    <!--<img src="src/components/assets/ToroNet.png">-->
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  data() {
+  data() {                                    
     return {
       // date: Date.now(),
       // username: this.$store.user.username,

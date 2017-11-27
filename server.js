@@ -30,13 +30,12 @@ app.use(session({
   secret: 'test-secret',
   resave: false,
   saveUninitialized: true,
-  cookie: {httpOnly: true,maxAge:2495000000}
+  cookie: { httpOnly: true, maxAge: 2495000000 }
 }))
 
 app.use(cookieParser('test-secret'))
 app.use(passport.initialize())
 app.use(passport.session())
-
 
 app.use('/users', users),
 app.use('/auth', auth),
