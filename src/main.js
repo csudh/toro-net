@@ -20,7 +20,7 @@ const router = new VueRouter({
     { path: '/counter', component: Counter },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
-    { path: '/forgot_password', component: ForgotPassword}
+    { path: '/forgot', component: ForgotPassword}
   ]
 })
 
