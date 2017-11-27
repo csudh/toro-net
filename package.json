@@ -28,7 +28,7 @@
     "passport-github2": "^0.1.11",
     "passport-local": "^1.0.0",
     "req-flash": "0.0.3",
-    "vee-validate": "^2.0.0-rc.19",
+    "vee-validate": "^2.0.0-rc.25",
     "vue": "^2.2.1",
     "vue-router": "^2.4.0",
     "vuex": "^2.3.0"
