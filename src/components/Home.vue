@@ -15,40 +15,16 @@
   <div class="container" v-else>
     <h3>Login to access Toro Net</h3>
     
-    <img src="https://i.imgur.com/bGlcYmy.png">   
+    <div >
+    <a href="/login"><img src="https://i.imgur.com/bGlcYmy.png"/></a> 
+    </div>
+
     <!--<img src="https://i.imgur.com/ytdAxfF.png">-->                                                                                                
     <!--<img src="src/components/assets/ToroNet.png">-->
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Home',
-  data() {                                    
-    return {
-      // date: Date.now(),
-      // username: this.$store.user.username,
-      // email: this.$store.user.email,
-      // displayName: this.$store.user.displayName,
-      // Are the above data to be included here?
-      // I think not, since the data would be passed around more times 
-      // than is probably necessary... $store is accessible globally 
-      // throughout the app after all.
-      title: '',
-      body: ''
-    };
-  },
-  methods: {
-    addPost() {
-      this.$store.dispatch('addPost', this.$store.state.posts)
-    }
-  },
-  mounted() {
-    this.$store.dispatch('getUser')
-  },
-}
-</script>
-
 export default {
   name: 'Home',
   data() {                                    
