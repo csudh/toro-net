@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="!this.$store.state.user.displayName">
-     <form id="register" @submit.prevent="Validate" method="post" action='/users'>
+     <form id="register" @submit.prevent="validateBeforeSubmit" method="post" action='/users'>
       <div class="form-group">
         <input type="text" class="form-control" v-validate="'required'" placeholder="Display name" v-model="displayName" name="displayName">
          <p class="text-danger" align="left" v-if="errors.has('displayName')">{{ errors.first('displayName') }}</p>
@@ -14,27 +14,13 @@
             <input v-model="email" name="email" v-validate="'required|email'" data-vv-delay="500" type="text" data-vv-as="email address" placeholder="Email" class="form-control">
             <p class="text-danger" align="left" v-if="errors.has('email')">{{ errors.first('email') }}</p>
       </div>
-
-      <div class="form-group"><div class="question">Question: When you were young, what did you want to be when you grew up?</div>
-        <input type="text" class="form-control" v-validate="'required'" placeholder="Answer" v-model="question1" name="question1">
-         <p class="text-danger" align="left" v-if="errors.has('question1')">{{ errors.first('question1') }}</p>
-      </div>
-      <div class="form-group"><div class="question">Question: Who was your childhood hero?</div>
-        <input type="text" class="form-control" v-validate="'required'" placeholder="Answer" v-model="question2" name="question2">
-         <p class="text-danger" align="left" v-if="errors.has('question2')">{{ errors.first('question2') }}</p>
-      </div>
-      <div class="form-group"><div class="question">Question: What was the last name of your favorite teacher?</div>
-        <input type="text" class="form-control" v-validate="'required'" placeholder="Answer" v-model="question3" name="question3">
-         <p class="text-danger" align="left" v-if="errors.has('question3')">{{ errors.first('question3') }}</p>
-      </div>
-
       <div class="form-group" :class="{'has-error': errors.has('password') }" >
             <input v-model="password" name="password" v-validate.initial="{ rules: { regex: /^(?=.*[A-Za-z]+[0-9]+[!#@$*]+).{4,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
-            <p class="alert-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
+            <p class="text-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
       </div>
-      <div class="form-group" :class="{'has-error': errors.has('passwordconf') }" >
+      <div class="form-group" :class="{'has-error': errors.has('passwordConf') }" >
             <input v-model="passwordConf" name="passwordConf" v-validate.initial="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
-             <p class="alert-danger" align="left" v-if="errors.has('passwordConf')">{{ errors.first('passwordConf') }}</p>
+             <p class="text-danger" align="left" v-if="errors.has('passwordConf')">{{ errors.first('passwordConf') }}</p>
       </div>
       <button class="btn btn-success" type="submit">Register</button>
     </div>
@@ -60,24 +46,29 @@
 export default {
   name: 'Register',
   methods: {
-    Validate(e) {
-      e.preventDefault();
+    validateBeforeSubmit(e) {
+      e.preventDefault()
       this.$validator.validateAll().then((result) => {
-        if (result){
-         const newUser = {
+        if (result) {
+          const newUser = {
             displayName: this.displayName,
             username: this.username,
             email: this.email,
             password: this.password,
-            question1: this.question1,
-          question2: this.question2,
-          question3: this.question3,
             createdOn: new Date
           }
-
-          this.$store.dispatch('registerUser', newUser)
-          .then(res => {
-             if (res.status == 200) {
+          this.$store.dispatch('registerUser', newUser).then(res => {
+            if (res.status == 409) {
+              if (res.statusText == 'username') {
+                this.errors.add('username', 'This username is already taken.', 'auth')
+                this.errors.first('username:auth')
+              }
+              else if (res.statusText == 'email') {
+                this.errors.add('email', 'This email is already taken.', 'auth')
+                this.errors.first('username:email')
+              }
+            }
+            else if (res.status == 200) {
               alert('Registration successful!')
               this.$router.push('/login')
             }
@@ -85,13 +76,14 @@ export default {
             alert('Registration failed!')
             this.$router.push('/register')
           })
+
           return
         }
       })
     }
   },
   mounted(){
-    this.$store.dispatch(getUser);
+    this.$store.dispatch('getUser')
   }
 }
 </script>
