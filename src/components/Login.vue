@@ -14,7 +14,7 @@
         </div>
         <button class="btn btn-primary" form="login" type="submit">Login</button>
       </form>
-      <h4 class="mx-auto">OR<h4>
+      <h4 class="mx-auto">OR</h4>
       <a href="/auth/github" class="btn btn-github">
         <i class="fa fa-github"></i> Login with Github
       </a>
@@ -30,7 +30,7 @@
 <style scoped>
 .btn-github {
   border: 0;
-  background: #444;
+  background: #363636;
   color: white;
 }
 .btn-github:hover {
@@ -42,20 +42,20 @@
 <script>
 export default {
   name: 'Login',
-  methods: {
-    validateBeforeSubmit(e) {
-      e.preventDefault()
-      this.$validator.validateAll().then((result) => {
-        if (result) {
-          // eslint-disable-next-line
-          document.querySelector('#login').submit()
-          return
-        } 
-      })
-    }
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
   },
-  mounted() {
-    this.$store.dispatch('getUser')
+  methods: {
+    login() {
+      const user = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', user)
+    }
   }
 }
 </script>
