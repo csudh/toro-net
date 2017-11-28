@@ -42,20 +42,20 @@
 <script>
 export default {
   name: 'Login',
-  data() {
-    return {
-      email: '',
-      password: ''
-    };
-  },
   methods: {
-    login() {
-      const user = {
-        email: this.email,
-        password: this.password
-      }
-      this.$store.dispatch('login', user)
+    validateBeforeSubmit(e) {
+      e.preventDefault()
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          // eslint-disable-next-line
+          document.querySelector('#login').submit()
+          return
+        }
+      })
     }
+  },
+  mounted() {
+    this.$store.dispatch('getUser')
   }
 }
 </script>
