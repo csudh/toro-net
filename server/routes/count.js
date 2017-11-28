@@ -1,6 +1,9 @@
 const express = require('express'),
       Count = require('../models/count')
 
+// Functions imported with 'require' must be set to var, not const.
+var checkAuth = require('./index.js').checkAuth
+
 module.exports = (() => {
     'use strict';
 
@@ -11,7 +14,7 @@ module.exports = (() => {
       _id: false
     }
 
-    router.get('/', checkAuthentication, (req, res) => {
+    router.get('/', checkAuth, (req, res) => {
       Count.findOne({}, countProjection, (err, count) => {
         if (err) throw err
         if (!count || count.count === null) {
@@ -32,24 +35,17 @@ module.exports = (() => {
       })
     })
 
-    router.post('/', checkAuthentication, (req, res) => {
+    router.post('/', checkAuth, (req, res) => {
       const { count } = req.body
       const newScore = count
 
-      Count.findOneAndUpdate({}, { count: newScore }, { projection: countProjection }, (err, score) => {
+      Count.findOneAndUpdate({}, 
+        { count: newScore }, 
+        { projection: countProjection }, (err, score) => {
         if (err) throw err
         res.json({ count: newScore })
       })
     })
-
-    function checkAuthentication(req, res, next) {
-      if (req.isAuthenticated()) {
-        next()
-      }
-      else {
-        res.redirect('/login')
-      }
-    }
 
     return router
 })();
