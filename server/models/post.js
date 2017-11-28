@@ -8,14 +8,17 @@ var Post = new Schema({
   },
   title: {
     type: String,
+    required: true,
     trim: true
   },
   body: {
     type: String,
+    required: true,
     trim: true
   },
   createdOn:{
     type: Date
+    required: true,
   }
 })
 

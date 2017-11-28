@@ -57,9 +57,6 @@ module.exports = (() => {
             email: req.body.email,
             username: req.body.username,
             password: hash, // Hash, not plain!
-            question1: req.body.question1,
-            question2: req.body.question2,
-            question3: req.body.question3,
             createdOn: new Date
           })
 
