@@ -1,4 +1,4 @@
-                                                                                                                                                                                <template>
+<template>
   <div class="container" v-if="this.$store.state.user.displayName">
     <h4>Welcome {{this.$store.state.user.displayName}}! What's happening?</h4>
     <br>
