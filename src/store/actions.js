@@ -77,20 +77,17 @@ export const logout = ({commit}) => {
   commit(types.LOGOUT)
 }
 
-export const addPost = ({commit}, postsPayload) => {
-  fetch(`/posts`), {
+export const addPost = ({commit}, postPayload) => {
+  fetch(`/posts`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      title: title,
-      body: body 
-    })
-    .then(response => response.json())
-    .then(json => commit(types.ADD_POST, json))
-  }
+    body: JSON.stringify(postPayload)
+  })
+  .then(response => response.json())
+  .then(json => commit(types.ADD_POST, json))
 }
 
 export const getPosts = ({commit}) => {
