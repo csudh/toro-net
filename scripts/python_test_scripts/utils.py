@@ -3,8 +3,8 @@ import random
 import json
 
 BASE = "https://randomapi.com/api/"
-REF_ID = "gshexzje"
-KEY = "O38S-58YS-9YK7-AK1D"
+REF_ID = "n053huo0"
+KEY = "G8PV-S739-BB8H-VCUQ"
 FMT = "prettyjson"
 
 
@@ -62,13 +62,11 @@ def create_friendships(url, user_list, friend_prob=0.50):
     for friendship in friendship_pairs:
         f1, f2 = user_list[friendship[0]], user_list[friendship[1]]
         post_req = requests.post(url, data={
-            'sDisplayName': f1['displayName'],
-            'tDisplayName': f2['displayName'],
-            'sEmail': f1['email'],
-            'tEmail': f2['email']
+            'sUsername': f1['username'],
+            'tUsername': f2['username']
         })
         if post_req.status_code != 200:
-            print("Friendship {} <-> {} failed.".format(f1['displayName'], f2['displayName']))
+            print("Friendship {} <-> {} failed.".format(f1['username'], f2['username']))
         else:
             print(post_req.status_code)
 
@@ -89,6 +87,15 @@ def gen_friendships(user_list, friend_prob=0.50):
                 friend_pairs.append([i1, i2])
     return friend_pairs
 
-new_users = get_random_user(num_users=5)
-add_users(url='http://localhost:3000/users/register', user_list=new_users)
-create_friendships(url='http://localhost:3000/users/add/friend', user_list=new_users, friend_prob=0.50)
+def test_shortestpath(url):
+    post_req = requests.get(url)
+    if post_req.status_code != 200:
+        print("cool")
+    else:
+        print(post_req.status_code)
+
+
+#new_users = get_random_user(num_users=5)
+#add_users(url='http://localhost:3000/users/register', user_list=new_users)
+#create_friendships(url='http://localhost:3000/users/add/friend', user_list=new_users, friend_prob=0.50)
+test_shortestpath(url='http://localhost:3000/users/list/friend/shortest/Piper36/Lela98')
