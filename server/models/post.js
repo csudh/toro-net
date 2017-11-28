@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
       User = require('../models/user')
 
 var Post = new Schema({
-  user: {
+  userId: {
     type: String,
   },
   title: {
