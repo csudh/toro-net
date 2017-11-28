@@ -240,6 +240,36 @@ module.exports = (() => {
       })
     })
     
+
+    /* Friend Shortest Path API endpoint */
+    router.get('/list/friend/shortest/:username1/:username2', (req, res) => {
+      /* Returns a list of friends for the username specified in the path. 
+        * The list of friends returned is the shortest path between the user
+        * and the requested user.
+        */
+      const queryString = 
+        `MATCH (a:User), (b:User), p= shortestPath((a)-[:isFriends*]-(b))
+        WHERE a.username='${req.params['username1']}' AND b.username='${req.params['username2']}'
+        RETURN p`
+      const query = apoc.query(queryString)
+
+      query.exec().then((result) => {
+        const resultArray = []
+        const dataLength = result[0]['data'][0]['row'][0].length
+        for (var i = 0; i < dataLength; i++) {
+          if(JSON.stringify(result[0]['data'][0]['row'][0][i]).search('username') != -1) {
+            resultArray.push(result[0]['data'][0]['row'][0][i])
+          }
+        }
+        console.log(resultArray)
+        res.json({
+          'data': resultArray,
+          'length': dataLength
+        })
+      }, (fail) => {
+        console.log(fail)
+      })
+    })
     
     return router
 })()
