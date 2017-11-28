@@ -1,5 +1,3 @@
-
-
 const express = require('express'),
       Post = require('../models/post')
 
