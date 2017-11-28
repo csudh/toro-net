@@ -17,8 +17,8 @@ var Post = new Schema({
     trim: true
   },
   createdOn:{
-    type: Date
-    required: true,
+    type: Date,
+    required: true
   }
 })
 
