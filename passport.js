@@ -14,6 +14,7 @@ module.exports = function (passport) {
     })
   })
 
+  /* GitHub authentication strategy using OAuth2 tokens. */
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_ID,
     clientSecret: process.env.GITHUB_SECRET,
@@ -25,10 +26,10 @@ module.exports = function (passport) {
         if (err) {
           return done(err)
         }
-
-        if (user) {
+        else if (user) {
           return done(null, user)
-        } else {
+        } 
+        else {
           const newUser = new User({
             username : profile.username,
             displayName : profile.displayName,
