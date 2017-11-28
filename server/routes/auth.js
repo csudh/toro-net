@@ -9,36 +9,6 @@ const express = require('express'),
 
 router.use(expressValidator());
 require('dotenv').load();
-passport.use(new GitHubStrategy({
-        clientID: process.env.GITHUB_ID,
-        clientSecret: process.env.GITHUB_SECRET,
-        callbackURL: "http://test.toritos.tk/auth/github/callback",
-        profileFields : ['displayName','name','email']
-      },
-      function(accessToken, refreshToken, profile, done) {
-        // asynchronous verification, for effect...
-        console.log(profile.name)
-        const newuser = User.Create(new User({displayName: profile.name,username:profile.name,email:profile.email,password:'abc',createdOn:new Date}))
-        
-        process.nextTick(function () {
-          
-          // To keep the example simple, the user's GitHub profile is returned to
-          // represent the logged-in user.  In a typical application, you would want
-          // to associate the GitHub account with a user record in your database,
-          // and return that user instead.
-          //User.Create(new User({displayName: profile.name,username:profile.name,email:profile.email,password:'abc',createdOn:new Date}))
-          return done(null, newuser);
-        });
-      }
-));
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
- });
- 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
- });
 
 /* GitHub */
 router.get('/github',
@@ -47,7 +17,6 @@ router.get('/github',
 router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
-   
     res.redirect('/')
   })
 
@@ -60,15 +29,8 @@ router.post('/local',
 
   router.post('/forgot', function(req, res){
     var email = req.body.email;
-    var question = req.body.question;
-    var question2 = req.body.question2;
-    var question3 = req.body.question3;
   
-    req.checkBody('email', 'Invalid email').notEmpty();
-    req.checkBody('question', 'Answer to security question is required').notEmpty();
-    req.checkBody('question2', 'Answer to security question is required').notEmpty();
-    req.checkBody('question3', 'Answer to security question is required').notEmpty();
-  
+    req.checkBody('email', 'Invalid email.').notEmpty()
       passport.use(new LocalStrategy(
           function(email, question, question2, question3, done) {
            User.getUserByemail(email, function(err, user){
