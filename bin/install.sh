@@ -26,8 +26,9 @@ sudo apt-get install -y mongodb-org
 echo "installing node"
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - &&
 sudo apt-get install -y nodejs 
+
+echo "installing npm modules locally"
 npm install
-npm install vee-validate
 
 echo "installing neo4j"
 sudo apt-get install neo4j=3.3.0
