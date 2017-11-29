@@ -15,14 +15,14 @@
             <p class="text-danger" align="left" v-if="errors.has('email')">{{ errors.first('email') }}</p>
       </div>
       <div class="form-group" :class="{'has-error': errors.has('password') }" >
-            <input v-model="password" name="password" v-validate.initial="{ rules: { regex: /^(?=.*[A-Za-z]+[0-9]+[!#@$*]+).{4,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
+            <input v-model="password" name="password" v-validate="{ rules: { regex: /^(?=.*[A-Za-z]+[0-9]+[!#@$*]+).{4,}$/, required: true} }" data-vv-delay="500" type="password" data-vv-as="password" placeholder="Password" class="form-control">
             <p class="text-danger" align="left" v-if="errors.has('password')">{{ errors.first('password') }}</p>
       </div>
       <div class="form-group" :class="{'has-error': errors.has('passwordConf') }" >
-            <input v-model="passwordConf" name="passwordConf" v-validate.initial="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
+            <input v-model="passwordConf" name="passwordConf" v-validate="'required|confirmed:password'" data-vv-delay="500" type="password" data-vv-as="password confirmation" placeholder="Password confirmation" class="form-control">
              <p class="text-danger" align="left" v-if="errors.has('passwordConf')">{{ errors.first('passwordConf') }}</p>
       </div>
-      <button class="btn btn-success" type="submit">Register</button>
+      <button class="btn btn-primary" type="submit">Register</button>
     </div>
     <div v-else>
       <h3>You cannot register while you are logged in!</h3>
