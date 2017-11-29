@@ -11,8 +11,7 @@ else
 fi
 
 mkdir -p $TOPDIR/var/log
-echo "starting front-end server on port $PORT"
-echo "=> point your browser to $APP_URL"
+echo "starting backend server on port $PORT"
 
 cd $TOPDIR
-./node_modules/nodemon/bin/nodemon.js server.js > $TOPDIR/var/log/frontend.log 
+./node_modules/nodemon/bin/nodemon.js server.js > $TOPDIR/var/log/backend.log 

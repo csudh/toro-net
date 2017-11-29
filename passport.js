@@ -1,9 +1,9 @@
 const GitHubStrategy = require('passport-github').Strategy,
       User = require('./server/models/user'),
-      LocalStrategy = require('passport-local').Strategy,
+      LocalStrategy = require('passport-local').Strategy
       bcrypt = require('bcryptjs')
 
-module.exports = function(passport) {
+module.exports = function (passport) {
   passport.serializeUser(function(user, done) {
     done(null, user.id)
   })
@@ -14,7 +14,7 @@ module.exports = function(passport) {
     })
   })
 
-  /* GitHub authentication strategy using OAuth tokens. */
+  /* GitHub authentication strategy using OAuth2 tokens. */
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_ID,
     clientSecret: process.env.GITHUB_SECRET,
@@ -22,17 +22,17 @@ module.exports = function(passport) {
     scope: ['user:email']
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({ email: profile.emails[0].value }, function(err, user) {
+      User.findOne({ email: profile.emails[0].value }, function (err, user) {
         if (err) {
           return done(err)
         }
-
-        if (user) {
+        else if (user) {
           return done(null, user)
-        } else {
+        } 
+        else {
           const newUser = new User({
-            username: profile.username,
-            displayName: profile.displayName,
+            username : profile.username,
+            displayName : profile.displayName,
             email: profile.emails[0].value,
             createdOn: new Date
           })
@@ -46,16 +46,16 @@ module.exports = function(passport) {
           })
         }
       })
-    }))
+    })
+  )
 
-  /* Local authentication strategy using email/password. */
   passport.use(new LocalStrategy({
       usernameField: 'email'
     },
     (email, password, done) => {
-      User.findOne({ email: email }, function(err, user) {
+      User.findOne({ email: email}, (err, user) => {
         if (err) { 
-          return done(err)
+          return done(err) 
         }
         if (!user || !bcrypt.compareSync(password, user.password)) {
           return done(null, false)

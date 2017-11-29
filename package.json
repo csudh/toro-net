@@ -10,6 +10,7 @@
     "start": "node server"
   },
   "dependencies": {
+    "apoc": "^2.1.6",
     "axios": "^0.16.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
@@ -20,13 +21,16 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
+    "express-validator": "^4.2.1",
     "mongoose": "^4.9.5",
+    "node-env-file": "^0.1.8",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
-    "passport-http": "^0.3.0",
+    "passport-github2": "^0.1.11",
     "passport-local": "^1.0.0",
-    "vee-validate": "^2.0.0-rc.18",
+    "req-flash": "0.0.3",
+    "vee-validate": "^2.0.0-rc.25",
     "vue": "^2.2.1",
     "vue-router": "^2.4.0",
     "vuex": "^2.3.0"

@@ -1,7 +1,12 @@
 const mongoose = require('mongoose'),
-      Schema = mongoose.Schema
+      Schema = mongoose.Schema,
+      bcrypt = require('bcryptjs')
 
 var User = new Schema({
+  displayName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -15,11 +20,7 @@ var User = new Schema({
     trim: true
   },
   password: {
-    type: String
-  },
-  displayName: {
     type: String,
-    required: true
   },
   createdOn: {
     type: Date,
