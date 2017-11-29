@@ -16,16 +16,7 @@ Change your directory into the dir on your VirtualBox Ubuntu virtual machine.
 cd toro-net
 ```
 
-Install node packages with `npm`.
-
-```bash
-$ npm install
-``` 
-
-Additionally, you will need to install Neo4j as well as Java 8 in order to run Toro-net. 
-
-## Customizations
-
+## Configuring environment variables file
 Update your environment settings by creating a file `.env` as below:
 
 ```
@@ -40,8 +31,9 @@ NEO4J_PORT=7474
 NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=neo4j
 ```
----
+
 ## Virtual Box Setup Instructions
+These instructions assume an Ubuntu environment.
 To use Vagrant, get started [here](#vagrant-setup-instructions)
 
 ### Install and run everything
