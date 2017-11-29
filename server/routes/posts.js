@@ -23,7 +23,7 @@ module.exports = (() => {
     })
   })
   
-  /* Endpoint to provide partial list of posts based on keyword search */
+  /* Endpoint to provide partial list of posts based on keyword search. */
   router.get('/list/:keyword', checkAuth, (req,res) => {
     const regex = { $regex: req.params.keyword }
     Post.find({$or: [{ title: regex }, { body: regex }]}, 
