@@ -42,28 +42,22 @@ NEO4J_PASSWORD=neo4j
 ```
 ---
 ## Virtual Box Setup Instructions
-### To use Vagrant, get started [here](#vagrant-setup-instructions)
-Install dependencies (mongo, node, npm packages).  
-```
-bash dev-env.sh
-```
+To use Vagrant, get started [here](#vagrant-setup-instructions)
 
-Install dependencies (mongo, node, npm packages).  
-```
-bash dev-env.sh
-```
-
-Install node packages with `npm install`. Then,
-
-Run mongo as a service.  
-```
-sudo service mongod start
-```
-
+### Install and run everything
 ```bash
-$ ./bin/run-back-end.sh &
-$ ./bin/run-front-end.sh &
+$ ./bin/install.sh &
+$ ./bin/db.sh &
+$ ./bin/backend.sh &
+$ ./bin/frontend.sh &
 ```
+Update neo4j's default password:
+```
+http://localhost:7474
+Fill in username:password with neo4j:neo4j
+Change password to "admin" (or whatever, just make sure to update it in .env file)
+```
+**WAIT 2 MINUTES FOR NEO4J TO BECOME READY.**
 
 Open a new terminal window and navigate to toro-net.  
 
