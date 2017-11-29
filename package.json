@@ -14,6 +14,8 @@
     "axios": "^0.16.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
+    "connect-ensure-login": "^0.1.1",
+    "connect-mongo": "^2.0.0",
     "connect-mongostore": "^0.1.4",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
