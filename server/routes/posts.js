@@ -14,7 +14,6 @@ module.exports = (() => {
     Post.find({}, (err, posts) => {
       if (err) throw err
       else {
-        console.log('Posts retrieved: ', posts)
         res.json({ posts })
       }
     })
@@ -22,20 +21,14 @@ module.exports = (() => {
   
   /* Endpoint to provide partial list of posts based on keyword search */
   router.get('/list/:keyword', checkAuth, (req,res) => {
-    console.log("Endpoint: Listing Posts Based on Keyword Match ")
-    Post.find({body: {$regex: req.params.keyword}}, (err, posts) => {
+    const regex = { $regex: req.params.keyword }
+    Post.find({$or: [{ title: regex }, { body: regex }]}, (err, posts) => {
       if (err) throw err
       if (!posts || (posts.length < 1) ) {
-        console.log('Total Posts Found:  ', posts.length)
-        console.log('No Post Found matching the keyword.')
         res.json({ posts })   
       }
       else {
-        console.log('Total Posts Found:  ', posts.length)
-        console.log('')
-        console.log('POSTS: ')
-        console.log(' ',posts)          
-        res.json({posts})
+        res.json({ posts })
       }        
     })
   })
