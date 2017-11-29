@@ -9,9 +9,13 @@ module.exports = (() => {
   'use strict';
   
   const router = express.Router();
+
+  const postsProjection = {
+      __v: false,
+  }
   
   router.get('/', checkAuth, (req, res) => {
-    Post.find({}, (err, posts) => {
+    Post.find({}, postsProjection, (err, posts) => {
       if (err) throw err
       else {
         res.json({ posts })
@@ -22,7 +26,8 @@ module.exports = (() => {
   /* Endpoint to provide partial list of posts based on keyword search */
   router.get('/list/:keyword', checkAuth, (req,res) => {
     const regex = { $regex: req.params.keyword }
-    Post.find({$or: [{ title: regex }, { body: regex }]}, (err, posts) => {
+    Post.find({$or: [{ title: regex }, { body: regex }]}, 
+      postsProjection, (err, posts) => {
       if (err) throw err
       if (!posts || (posts.length < 1) ) {
         res.json({ posts })   
@@ -35,7 +40,8 @@ module.exports = (() => {
   
   /* Endpoint: Delete single post based on new attempt. */
   router.get('/delete/:id', checkAuth, (req, res) => {
-    Post.remove( Post.findById(req.params.id) ,  (err, result) => {
+    Post.remove( Post.findById(req.params.id), postsProjection,
+      (err, result) => {
       console.log('Endpoint: Delete Post')
       if (err) {
         console.log('Error in delete post')
@@ -61,7 +67,8 @@ module.exports = (() => {
       console.log('ID :  ', idToDelete )
 
       /* Delete One ID */
-      Post.remove(Post.findById(idToDelete), (err, result) => {
+      Post.remove(Post.findById(idToDelete), postsProjection, 
+        (err, result) => {
         if (err) {
           console.log('Failure (Error): Delete Post ', err)
           //res.status(204).send()//No record
@@ -110,7 +117,7 @@ module.exports = (() => {
       createdOn: new Date
     })
     console.log("Post created.")
-    Post.create(newPost, (err) => {
+    Post.create(newPost, postsProjection, (err) => {
       console.log(newPost)
       if (err) {
         res.status(409).send()
@@ -124,7 +131,7 @@ module.exports = (() => {
   
   router.put('/update/:id', checkAuth, (req, res, next) => {
     console.log("EndPoint : update Post")
-    Post.update(Post.findById(req.params.id),req.body, (err, result) => {
+    Post.update(Post.findById(req.params.id), req.body, (err, result) => {
     if (err) {
       console.log("Post record doesn't exist!")
       res.status(204).send()
@@ -137,7 +144,8 @@ module.exports = (() => {
   })
   
   router.get('/:id', checkAuth, (req, res) => {
-    Post.find( Post.findById(req.params.id) ,  (err, result) => {
+    Post.find(Post.findById(req.params.id), postsProjection,  
+      (err, result) => {
       console.log('Endpoint: Read Post')
       if (err) {
         console.log("Post record doesn't exist!")
