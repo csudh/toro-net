@@ -63,7 +63,6 @@ module.exports = (() => {
           User.create(newUser, (err) => {
             if (err) {
               if (err.name === 'MongoError' && err.code === 11000) {
-                //search error message body for error source = 'email' or 'username'
                 if (err.message.search('username') != '-1') {
                   res.statusMessage = 'username'
                   return res.status(409).send()
@@ -74,13 +73,13 @@ module.exports = (() => {
                 }  
               }
               
-              /* Error message not displayed by default, included this to make stack trace 
-               * more descriptive. */
+              /* Error message not displayed by default, included this to make 
+               * stack trace more descriptive. */
               console.log(err.message)
               throw err
             }
             
-            /* Creates a cypher query in order to add new user to friend graph. */
+            /* Creates a cypher query to add new user to friend graph. */
             const queryString = `CREATE (u:User { username: "${req.body.username}" })`
             const query = apoc.query(queryString)
             query.exec().then((result) => {

@@ -46,7 +46,7 @@ module.exports = (() => {
       console.log('Endpoint: Delete Post')
       if (err) {
         console.log('Error in delete post')
-        res.status(204).send() //No record
+        res.status(204).send() 
       }
       else {
         console.log('Success in Delete Post') //, result)
@@ -111,7 +111,7 @@ module.exports = (() => {
   
   router.post('/create', checkAuth, (req, res) => {
     const newPost = new Post({
-      userId: req.body.user.id,
+      userId: req.user.id,
       title: req.body.title,
       body: req.body.body,
       createdOn: new Date
@@ -120,9 +120,12 @@ module.exports = (() => {
     Post.create(newPost, (err) => {
       console.log(newPost)
       if (err) {
+        res.status(409).send()
         throw err
       }
-      res.status(200).send()
+      else {
+        res.status(200).send()
+      }
     })
   })
   
