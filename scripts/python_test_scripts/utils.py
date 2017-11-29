@@ -95,7 +95,7 @@ def test_shortestpath(url):
         print(post_req.status_code)
 
 
-#new_users = get_random_user(num_users=5)
-#add_users(url='http://localhost:3000/users/register', user_list=new_users)
-#create_friendships(url='http://localhost:3000/users/add/friend', user_list=new_users, friend_prob=0.50)
-test_shortestpath(url='http://localhost:3000/users/list/friend/shortest/Piper36/Lela98')
+new_users = get_random_user(num_users=5)
+add_users(url='http://localhost:3000/users/register', user_list=new_users)
+create_friendships(url='http://localhost:3000/users/add/friend', user_list=new_users, friend_prob=0.50)
+#test_shortestpath(url='http://localhost:3000/users/list/friend/shortest/Piper36/Lela98')
